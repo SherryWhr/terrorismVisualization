@@ -127,6 +127,19 @@
 		stroke-width: .5px;
 		fill: red;
 	}
+
+	.column {
+		float: left;
+		width: 33.33%;
+		padding: 5px;
+	}
+
+	/* Clearfix (clear floats) */
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
 </style>
 
 </head>
@@ -214,41 +227,41 @@
 </form> -->
 
 <div class="row">
-  <div class="column">
-  <svg id = "svgmap" width="534" height="650" value="bar"></svg>
-    
-  </div>
-  <div class="column">
-    
-    <div class="row">
-  <svg id = "svgchart1" width="266" height="325" value="bar"></svg>
-    
-  </div>
-  <div class="row">
-  <svg id = "svgchart2" width="266" height="325" value="bar"></svg>
-    
-  </div>
-  </div>
-  
+	<div class="column">
+		<svg id = "svgmap" width="534" height="650" value="bar"></svg>
+		
+	</div>
+	<div class="column">
+		
+		<div class="row">
+			<svg id = "svgchart1" width="266" height="325" value="bar"></svg>
+			
+		</div>
+		<div class="row">
+			<svg id = "svgchart2" width="266" height="325" value="bar"></svg>
+			
+		</div>
+	</div>
+	
 </div>
 
 <!-- <svg id = "svgmap" width="800" height="650" value="bar"></svg>
-<svg id = "svgchart" width="400" height="650" value="bar"></svg> -->
-<!-- <script type="text/javascript" src="Geo-USA States.js"></script> -->
-<script type="text/javascript">
-	function openCity(evt, cityName) {
-		var i, tabcontent, tablinks;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
+	<svg id = "svgchart" width="400" height="650" value="bar"></svg> -->
+	<!-- <script type="text/javascript" src="Geo-USA States.js"></script> -->
+	<script type="text/javascript">
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
 		}
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		document.getElementById(cityName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-</script>
+	</script>
 </body>
 </html>
