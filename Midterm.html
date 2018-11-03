@@ -1,0 +1,227 @@
+<!DOCTYPE HTML5>
+<meta charset="utf-8">
+<html>
+<head>
+	<title> CSE 5544 Midterm Project</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	<script type="text/javascript"src="textures.js"></script>
+	<style type="text/css">
+	h1{
+		text-align: center;
+	}
+
+	div.bar {
+		display: inline-block;
+		width: 0.2;
+		height: 75px;
+		margin-right: 2px; 
+	}
+
+	/* Style the tab */
+	.tab {
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+	}
+
+	/* Style the buttons inside the tab */
+	.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 14px 16px;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+		background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+		background-color: #ccc;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+		border: 1px solid #ccc;
+		border-top: none;
+	}
+
+	.mode form{
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		position: absolute;
+		left: 10px;
+		top: 40px;
+	}
+
+	.channel form{
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		position: absolute;
+		left: 750px;
+		top: 40px;
+	}
+
+	label {
+		display: block;
+	}
+
+	.axisWhite path{
+		fill: white;
+		stroke: white;
+	}
+
+	.axisWhite path:hover{
+		fill: white;
+		stroke: white;
+	}
+
+	.axisNormal path{
+		fill: white;
+		stroke: black;
+	}
+
+	.axisNormal path:hover{
+		fill: white;
+		stroke: black;
+	}
+
+
+	body {
+		font-family: "Helvetica Neue", Helvetica, sans-serif;
+		font-size: 14px;
+		color: #333;
+	}
+
+	path {
+		class: none;
+		fill: #ddd;
+		stroke: #aaa;
+		pointer-events:all;
+	}
+
+	path:hover {
+		fill: orange;
+	}
+
+	rect:hover {
+		stroke: green;
+	}
+
+	svg {
+		display: block;
+		margin: auto;
+	}
+
+	.bubble {
+		fill-opacity: .5;
+		stroke: #fff;
+		stroke-width: .5px;
+		fill: red;
+	}
+</style>
+
+</head>
+<body>
+	<h1> CSE 5544 Midterm Project </h1>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Armed Assault')">Armed Assault</button>
+  <button class="tablinks" onclick="openCity(event, 'Assassination')">Assassination</button>
+  <button class="tablinks" onclick="openCity(event, 'Bombing/Explosion')">Bombing/Explosion</button>
+  <button class="tablinks" onclick="openCity(event, 'Facility/Infrastructure Attack')">Facility/Infrastructure Attack</button>
+  <button class="tablinks" onclick="openCity(event, 'Hijacking')">Hijacking</button>
+  <button class="tablinks" onclick="openCity(event, 'Hostage Taking (Barricade Incident)')">Hostage Taking (Barricade Incident)</button>
+  <button class="tablinks" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Hostage Taking (Kidnapping)</button>
+  <button class="tablinks" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
+  <button class="tablinks" onclick="openCity(event, 'Unknown')">Unknown</button>
+
+</div>
+
+<div id="Armed Assault" class="tabcontent">
+  <h3>Armed Assault</h3>
+  <p>Armed Assault is the capital city of England.</p>
+</div>
+
+<div id="Assassination" class="tabcontent">
+  <h3>Assassination</h3>
+  <p>Assassination is the capital of France.</p> 
+</div>
+
+<div id="Bombing/Explosion" class="tabcontent">
+  <h3>Bombing/Explosion</h3>
+  <p>Bombing/Explosion is the capital of Japan.</p>
+</div>
+
+<div id="Facility/Infrastructure Attack" class="tabcontent">
+  <h3>AFacility/Infrastructure Attack</h3>
+  <p>Facility/Infrastructure Attack is the capital city of England.</p>
+</div>
+
+<div id="Hijacking" class="tabcontent">
+  <h3>Hijacking</h3>
+  <p>Hijacking is the capital of France.</p> 
+</div>
+
+<div id="Hostage Taking (Barricade Incident)" class="tabcontent">
+  <h3>Hostage Taking (Barricade Incident)</h3>
+  <p>Hostage Taking (Barricade Incident) is the capital of Japan.</p>
+</div>
+
+<div id="Hostage Taking (Kidnapping)" class="tabcontent">
+  <h3>Hostage Taking (Kidnapping)</h3>
+  <p>Hostage Taking (Kidnapping) is the capital city of England.</p>
+</div>
+
+<div id="Unarmed Assault" class="tabcontent">
+  <h3>Unarmed Assault</h3>
+  <p>Unarmed Assault is the capital of France.</p> 
+</div>
+
+<div id="Unknown" class="tabcontent">
+  <h3>Unknown</h3>
+  <p>Unknown is the capital of Japan.</p>
+</div>
+
+
+
+<!-- <select id="iMode">
+	<option value="Population">Population</option>
+	<option value="Area" selected>Area</option>
+</select> -->
+
+<!-- <form id="iChannel">
+	<input type="radio" name="channel" value="cSize" > Size</input>
+	<input type="radio" name="channel" value="cValue" > Value</input>
+	<input type="radio" name="channel" value="cOrientation" > Orientation</input>
+	<input type="radio" name="channel" value="cColor" checked> Color</input>
+	<input type="radio" name="channel" value="cShape" > Shape</input>
+	<input type="radio" name="channel" value="cTexture" > Texture</input>
+</form> -->
+<svg width="800" height="650" value="bar"></svg>
+<!-- <script type="text/javascript" src="Geo-USA States.js"></script> -->
+<script type="text/javascript">
+	function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+</body>
+</html>
