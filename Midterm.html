@@ -133,63 +133,69 @@
 <body>
 	<h1> CSE 5544 Midterm Project </h1>
 
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Armed Assault')">Armed Assault</button>
-  <button class="tablinks" onclick="openCity(event, 'Assassination')">Assassination</button>
-  <button class="tablinks" onclick="openCity(event, 'Bombing/Explosion')">Bombing/Explosion</button>
-  <button class="tablinks" onclick="openCity(event, 'Facility/Infrastructure Attack')">Facility/Infrastructure Attack</button>
-  <button class="tablinks" onclick="openCity(event, 'Hijacking')">Hijacking</button>
-  <button class="tablinks" onclick="openCity(event, 'Hostage Taking (Barricade Incident)')">Hostage Taking (Barricade Incident)</button>
-  <button class="tablinks" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Hostage Taking (Kidnapping)</button>
-  <button class="tablinks" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
-  <button class="tablinks" onclick="openCity(event, 'Unknown')">Unknown</button>
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event, 'All')">All</button>
+		<button class="tablinks" onclick="openCity(event, 'Armed Assault')">Armed Assault</button>
+		<button class="tablinks" onclick="openCity(event, 'Assassination')">Assassination</button>
+		<button class="tablinks" onclick="openCity(event, 'Bombing/Explosion')">Bombing/Explosion</button>
+		<button class="tablinks" onclick="openCity(event, 'Facility/Infrastructure Attack')">Facility/Infrastructure Attack</button>
+		<button class="tablinks" onclick="openCity(event, 'Hijacking')">Hijacking</button>
+		<button class="tablinks" onclick="openCity(event, 'Hostage Taking (Barricade Incident)')">Hostage Taking (Barricade Incident)</button>
+		<button class="tablinks" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Hostage Taking (Kidnapping)</button>
+		<button class="tablinks" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
+		<button class="tablinks" onclick="openCity(event, 'Unknown')">Unknown</button>
 
-</div>
+	</div>
 
-<div id="Armed Assault" class="tabcontent">
-  <h3>Armed Assault</h3>
-  <p>Armed Assault is the capital city of England.</p>
-</div>
+	<div id="All" class="tabcontent">
+		<h3>All</h3>
+		<p>All is the capital city of England.</p>
+	</div>
 
-<div id="Assassination" class="tabcontent">
-  <h3>Assassination</h3>
-  <p>Assassination is the capital of France.</p> 
-</div>
+	<div id="Armed Assault" class="tabcontent">
+		<h3>Armed Assault</h3>
+		<p>Armed Assault is the capital city of England.</p>
+	</div>
 
-<div id="Bombing/Explosion" class="tabcontent">
-  <h3>Bombing/Explosion</h3>
-  <p>Bombing/Explosion is the capital of Japan.</p>
-</div>
+	<div id="Assassination" class="tabcontent">
+		<h3>Assassination</h3>
+		<p>Assassination is the capital of France.</p> 
+	</div>
 
-<div id="Facility/Infrastructure Attack" class="tabcontent">
-  <h3>AFacility/Infrastructure Attack</h3>
-  <p>Facility/Infrastructure Attack is the capital city of England.</p>
-</div>
+	<div id="Bombing/Explosion" class="tabcontent">
+		<h3>Bombing/Explosion</h3>
+		<p>Bombing/Explosion is the capital of Japan.</p>
+	</div>
 
-<div id="Hijacking" class="tabcontent">
-  <h3>Hijacking</h3>
-  <p>Hijacking is the capital of France.</p> 
-</div>
+	<div id="Facility/Infrastructure Attack" class="tabcontent">
+		<h3>AFacility/Infrastructure Attack</h3>
+		<p>Facility/Infrastructure Attack is the capital city of England.</p>
+	</div>
 
-<div id="Hostage Taking (Barricade Incident)" class="tabcontent">
-  <h3>Hostage Taking (Barricade Incident)</h3>
-  <p>Hostage Taking (Barricade Incident) is the capital of Japan.</p>
-</div>
+	<div id="Hijacking" class="tabcontent">
+		<h3>Hijacking</h3>
+		<p>Hijacking is the capital of France.</p> 
+	</div>
 
-<div id="Hostage Taking (Kidnapping)" class="tabcontent">
-  <h3>Hostage Taking (Kidnapping)</h3>
-  <p>Hostage Taking (Kidnapping) is the capital city of England.</p>
-</div>
+	<div id="Hostage Taking (Barricade Incident)" class="tabcontent">
+		<h3>Hostage Taking (Barricade Incident)</h3>
+		<p>Hostage Taking (Barricade Incident) is the capital of Japan.</p>
+	</div>
 
-<div id="Unarmed Assault" class="tabcontent">
-  <h3>Unarmed Assault</h3>
-  <p>Unarmed Assault is the capital of France.</p> 
-</div>
+	<div id="Hostage Taking (Kidnapping)" class="tabcontent">
+		<h3>Hostage Taking (Kidnapping)</h3>
+		<p>Hostage Taking (Kidnapping) is the capital city of England.</p>
+	</div>
 
-<div id="Unknown" class="tabcontent">
-  <h3>Unknown</h3>
-  <p>Unknown is the capital of Japan.</p>
-</div>
+	<div id="Unarmed Assault" class="tabcontent">
+		<h3>Unarmed Assault</h3>
+		<p>Unarmed Assault is the capital of France.</p> 
+	</div>
+
+	<div id="Unknown" class="tabcontent">
+		<h3>Unknown</h3>
+		<p>Unknown is the capital of Japan.</p>
+	</div>
 
 
 
@@ -210,18 +216,18 @@
 <!-- <script type="text/javascript" src="Geo-USA States.js"></script> -->
 <script type="text/javascript">
 	function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
 </script>
 </body>
 </html>
