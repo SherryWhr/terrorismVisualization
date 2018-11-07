@@ -183,12 +183,14 @@
 		<button class="btn btn-danger" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Kidnapping</button>
 		<button class="btn btn-danger" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
 		<button class="btn btn-danger" onclick="openCity(event, 'Unknown')">Unknown</button>
+
+
 		<select id="iMode">
 				<option value="All" selected>All</option>
 		</select>
 	</nav>
 
-	<div id="All" class="tabcontent">
+	<div id="All" class="tabcontent" style="display:block;">
 		<h3>All</h3>
 		<p>All is the capital city of England.</p>
 	</div>
@@ -262,6 +264,7 @@
 
 	<script type="text/javascript" src="map.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
+
 	<script type="text/javascript">
 		function openCity(evt, cityName) {
 			var i, tabcontent, tablinks;
@@ -274,7 +277,7 @@
 				tablinks[i].className = tablinks[i].className.replace(" active", "");
 			}
 			document.getElementById(cityName).style.display = "block";
-			evt.currentTarget.className += " active";
+			//evt.currentTarget.className += " active";
 		}
 	</script>
 </body>
