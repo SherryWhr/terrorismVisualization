@@ -71,4 +71,7 @@ function changed() {
 			console.log(buttonSelect);
 		}}
 
+
+	map_func(mod, buttonSelect);
+	chart_func(mod, buttonSelect);
 	}

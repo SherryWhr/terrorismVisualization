@@ -1,3 +1,5 @@
+function map_func(ctry, terr) {
+
 var min = Number.POSITIVE_INFINITY;
 var max = Number.NEGATIVE_INFINITY;
 
@@ -110,3 +112,6 @@ function drawMap(error, country) {
 
 
 })
+
+
+}

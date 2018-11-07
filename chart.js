@@ -1,3 +1,5 @@
+function chart_func(ctry, terr) {
+
 // Initial drawable area values
 	var margin = {top: 20, right: 40, bottom: 20, left: 40},
 	width = 960 - margin.left - margin.right,
@@ -130,3 +132,5 @@ function(error, data) {
 	.text("Area (sq mi)");
 
 })
+
+}
