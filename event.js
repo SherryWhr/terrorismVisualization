@@ -18,16 +18,16 @@ function openCity(evt, cityName) {
 			//evt.currentTarget.className += " active";
 		}
 
-d3.csv("world_population.csv", 
-	function(d, i, columns) {
-		for (i = 2, t = 0; i < columns.length; ++i) {
-			t +=  (d[columns[i]] = +d[columns[i]]);
-		}
-		d.total = t;
-		if(t < min) { min = t;};
-		if(t > max) { max = t;};
-		return d;
-	},
+d3.csv("country_whole.csv", 
+	// function(d, i, columns) {
+	// 	for (i = 2, t = 0; i < columns.length; ++i) {
+	// 		t +=  (d[columns[i]] = +d[columns[i]]);
+	// 	}
+	// 	d.total = t;
+	// 	if(t < min) { min = t;};
+	// 	if(t > max) { max = t;};
+	// 	return d;
+	// },
 	function(error, data) {
 		if (error) throw error;	
 
@@ -44,10 +44,10 @@ d3.csv("world_population.csv",
 		.enter()
 		.append("option")
 		.attr("value", function(d){
-			return d.name
+			return d.x
 		})
 		.text(function(d){
-			return d.name
+			return d.x
 		})
 
 	})
@@ -75,7 +75,7 @@ function changed() {
 			buttonSelect = button[i].id;
 		}}
 
-
+	// mod is selected country, buttonSelect Selected attack type
 	map_func(mod, buttonSelect);
 	chart_func(mod, buttonSelect);
 	}
