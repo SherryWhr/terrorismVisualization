@@ -1,24 +1,29 @@
 function map_func(ctry, terr) {
-	console.log(ctry)
-	console.log(terr)
+	// console.log(ctry)
+	// console.log(terr)
 
 	var min = Number.POSITIVE_INFINITY;
 	var max = Number.NEGATIVE_INFINITY;
+	var ctry_id
 
 
 // read data
 d3.csv("world_population.csv", 
 	function(d, i, columns) {
-// console.log(columns)
-for (i = 2, t = 0; i < columns.length; ++i) {
-//console.log(d[columns[i]])
-t +=  (d[columns[i]] = +d[columns[i]]);
-}
+		if (d[columns[1]] == ctry){
+			ctry_id = d[columns[0]]
+		}
 
-d.total = t;
-if(t < min) { min = t;};
-if(t > max) { max = t;};
-return d;
+
+		for (i = 2, t = 0; i < columns.length; ++i) {
+		//console.log(d[columns[i]])
+		t +=  (d[columns[i]] = +d[columns[i]]);
+	}
+
+	d.total = t;
+	if(t < min) { min = t;};
+	if(t > max) { max = t;};
+	return d;
 },
 function(error, data) {
 	if (error) throw error;	
@@ -72,7 +77,6 @@ function drawMap(error, country) {
 		.text(" ");
 	});
 
-
 	// radius of circle
 	var radius = d3.scaleSqrt()
 	.domain([min, max])
@@ -111,9 +115,6 @@ function drawMap(error, country) {
 	.attr("font-size", "12spx")
 	.text(d3.format(".1s"));
 }
-
-
 })
-
-
+	d3.select("#"+ctry_id).attr("fill", "orange")
 }
