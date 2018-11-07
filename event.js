@@ -1,3 +1,9 @@
+var min = Number.POSITIVE_INFINITY;
+var max = Number.NEGATIVE_INFINITY;
+
+map_func("All", "All");
+chart_func("All", "All");
+
 function openCity(evt, cityName) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
