@@ -1,0 +1,102 @@
+var min = Number.POSITIVE_INFINITY;
+var max = Number.NEGATIVE_INFINITY;
+
+
+// read data
+d3.csv("world_population.csv", 
+	function(d, i, columns) {
+// console.log(columns)
+for (i = 2, t = 0; i < columns.length; ++i) {
+//console.log(d[columns[i]])
+t +=  (d[columns[i]] = +d[columns[i]]);
+}
+
+d.total = t;
+if(t < min) { min = t;};
+if(t > max) { max = t;};
+return d;
+},
+function(error, data) {
+	if (error) throw error;	
+
+// set domains
+	x.domain(data.map(function(d) { return d.State; }));
+	y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+	var keys = data.columns.slice(1);
+	color.domain(keys);
+	console.log("here is the data");
+	console.log(data);
+	// add the bars
+	svg.append("g")
+	.selectAll("g")
+	.data(d3.stack().keys(keys)(data))
+	.enter()
+	.append("g")
+	.attr("fill", function(d) { return color(d.key); })
+	.selectAll("rect")
+	.data(function(d) { return d; })
+	.enter()
+	.append("rect")
+	.transition()
+	.duration(500)
+	.delay(function(d, i) { return i * 10; })
+	.attr("x", function(d) { return x(d.data.State); })
+	.attr("y", function(d) { return y(d[1]); })
+	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+	.attr("id", function(d){ return d.data.State; })
+	.attr("width", x.bandwidth());
+
+	// add the legend
+	var keys = data.columns.slice(1);
+
+	var legend = svg.append("g")
+	.attr("font-size", 8)
+	.attr("text-anchor", "end")
+	.attr("font-family", "sans-serif")
+	.selectAll("g")
+	.data(keys.slice().reverse())
+	.enter()
+	.append("g")
+	.attr("transform", function(d, i) { return "translate(0," + i * 15 + ")"; });
+
+		  // add the legend rectangle
+		  legend.append("rect")
+		  .attr("x", width - 13)
+		  .attr("width", 13)
+		  .attr("height", 13)
+		  .attr("fill", color);
+
+		  // add the legend text
+		  legend.append("text")
+		  .attr("x", width - 24)
+		  .attr("y", 9.5)
+		  .text(function(d) { return d; });
+
+
+		  // add the x Axis
+	svg.append("g")
+	.attr("class", "axisWhite")
+	.attr("transform", "translate(0," + height + ")")
+	.call(xAxis)
+	.append("text")
+	.attr("x", width)
+	.attr("y", y(y.ticks().pop()) + 6)
+	.attr("fill", "#000")
+	.attr("text-anchor", "start")
+	.attr("font-size", 8)
+	.text("State");
+
+	// add the y Axis
+	svg.append("g")
+	.attr("class", "axisNormal")
+	.call(yAxis)
+	.append("text")
+	.attr("x", -45)
+	.attr("y", y(y.ticks().pop()) + 8)
+	.attr("fill", "#000")
+	.attr("text-anchor", "start")
+	.attr("font-size", 8)
+	.attr("transform", "rotate(-90)")
+	.text("Area (sq mi)");
+
+})
