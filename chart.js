@@ -5,8 +5,8 @@ function chart_func(ctry, terr) {
 
 // Initial drawable area values
 	var margin = {top: 20, right: 40, bottom: 20, left: 40},
-	width = 960 - margin.left - margin.right,
-	height = 500 - margin.top - margin.bottom;
+	width = 600 - margin.left - margin.right,
+	height = 325 - margin.top - margin.bottom;
 
 // Specify range of x axis, match state to width
 	var x = d3.scaleBand()
