@@ -1,4 +1,7 @@
 function chart_func(ctry, terr) {
+	console.log(ctry)
+	console.log(terr)
+
 
 // Initial drawable area values
 	var margin = {top: 20, right: 40, bottom: 20, left: 40},

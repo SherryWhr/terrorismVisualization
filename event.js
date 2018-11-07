@@ -65,7 +65,6 @@ function changed() {
 	// Get mode from the dropdown select
 	var sect = document.getElementById("iMode");
 	var mod = sect.options[sect.selectedIndex].value;
-	console.log(mod);
 
 	// Get button
 	var button = document.getElementsByClassName("tabcontent");
@@ -74,7 +73,6 @@ function changed() {
 	for (i = 0; i < button.length; i++){
 		if(button[i].style.display=="block"){
 			buttonSelect = button[i].id;
-			console.log(buttonSelect);
 		}}
 
 

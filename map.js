@@ -1,7 +1,9 @@
 function map_func(ctry, terr) {
+	console.log(ctry)
+	console.log(terr)
 
-var min = Number.POSITIVE_INFINITY;
-var max = Number.NEGATIVE_INFINITY;
+	var min = Number.POSITIVE_INFINITY;
+	var max = Number.NEGATIVE_INFINITY;
 
 
 // read data
