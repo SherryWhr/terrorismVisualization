@@ -158,6 +158,14 @@
 		clear: both;
 		display: table;
 	}
+
+	.info {
+		background-color: red;
+		text-align: center;
+		text-anchor: middle;
+		alignment-baseline: middle;
+		font-size: 36px;
+	}
 </style>
 
 </head>
@@ -231,25 +239,9 @@
 		<p>Unknown is the capital of Japan.</p>
 	</div>
 
-
-
-<!-- <select id="iMode">
-	<option value="Population">Population</option>
-	<option value="Area" selected>Area</option>
-</select> -->
-
-<!-- <form id="iChannel">
-	<input type="radio" name="channel" value="cSize" > Size</input>
-	<input type="radio" name="channel" value="cValue" > Value</input>
-	<input type="radio" name="channel" value="cOrientation" > Orientation</input>
-	<input type="radio" name="channel" value="cColor" checked> Color</input>
-	<input type="radio" name="channel" value="cShape" > Shape</input>
-	<input type="radio" name="channel" value="cTexture" > Texture</input>
-</form> -->
-
 <div class="row">
 	<div class="column1">
-		<svg id = "svgmap" width="534" height="650" value="bar"></svg>
+		<svg id = "svgmap" width=100% height=100% value="bar"></svg>
 
 	</div>
 	<div class="column2">
@@ -269,8 +261,6 @@
 
 </div>
 
-<!-- <svg id = "svgmap" width="800" height="650" value="bar"></svg>
-	<svg id = "svgchart" width="400" height="650" value="bar"></svg> -->
 	<script type="text/javascript" src="map.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
 	<script type="text/javascript">
