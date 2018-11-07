@@ -17,6 +17,7 @@
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 	<style type="text/css">
 	h1{
@@ -174,6 +175,10 @@
 		<button class="btn btn-danger" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Kidnapping</button>
 		<button class="btn btn-danger" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
 		<button class="btn btn-danger" onclick="openCity(event, 'Unknown')">Unknown</button>
+		<select id="iMode">
+				<option value="Population" selected>Population</option>
+				<option value="Area">Area</option>
+		</select>
 	</nav>
 
 	<div id="All" class="tabcontent">
@@ -248,10 +253,10 @@
 
 	</div>
 	<div class="column2">
-		<select id="iMode">
-			<option value="Population">Population</option>
-			<option value="Area" selected>Area</option>
-		</select>
+		<!-- <select id="iMode">
+			<option value="Population" selected>Population</option>
+			<option value="Area">Area</option>
+		</select> -->
 		<div class="row">
 			<svg id = "svgchart1" width="266" height="325" value="bar"></svg>
 
