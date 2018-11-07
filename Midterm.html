@@ -7,6 +7,17 @@
 	<script src="https://d3js.org/topojson.v1.min.js"></script>
 	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 	<script type="text/javascript"src="textures.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		crossorigin="anonymous"></script>
 	<style type="text/css">
 	h1{
 		text-align: center;
@@ -151,20 +162,19 @@
 </head>
 <body>
 	<h1> 2007-2017 Terrorism Visualization </h1>
-
-	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'All')">All</button>
-		<button class="tablinks" onclick="openCity(event, 'Armed Assault')">Armed Assault</button>
-		<button class="tablinks" onclick="openCity(event, 'Assassination')">Assassination</button>
-		<button class="tablinks" onclick="openCity(event, 'Bombing/Explosion')">Bombing/Explosion</button>
-		<button class="tablinks" onclick="openCity(event, 'Facility/Infrastructure Attack')">Facility/Infrastructure Attack</button>
-		<button class="tablinks" onclick="openCity(event, 'Hijacking')">Hijacking</button>
-		<button class="tablinks" onclick="openCity(event, 'Hostage Taking (Barricade Incident)')">Hostage Taking (Barricade Incident)</button>
-		<button class="tablinks" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Hostage Taking (Kidnapping)</button>
-		<button class="tablinks" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
-		<button class="tablinks" onclick="openCity(event, 'Unknown')">Unknown</button>
-
-	</div>
+	<nav class="navbar navbar-dark bg-dark">
+		<!-- <a class="navbar-brand" href="#">Navbar</a> -->
+		<button class="btn btn-danger" onclick="openCity(event, 'All')">All</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Armed Assault')">Armed Assault</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Assassination')">Assassination</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Bombing/Explosion')">Explosion</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Facility/Infrastructure Attack')">Facility Attack</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Hijacking')">Hijacking</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Hostage Taking (Barricade Incident)')">Barricade Incident</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Hostage Taking (Kidnapping)')">Kidnapping</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Unarmed Assault')">Unarmed Assault</button>
+		<button class="btn btn-danger" onclick="openCity(event, 'Unknown')">Unknown</button>
+	</nav>
 
 	<div id="All" class="tabcontent">
 		<h3>All</h3>
