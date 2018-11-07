@@ -1,90 +1,89 @@
 var min = Number.POSITIVE_INFINITY;
-		var max = Number.NEGATIVE_INFINITY;
+var max = Number.NEGATIVE_INFINITY;
 
 
-	// read data
-	d3.csv("world_population.csv", 
-		function(d, i, columns) {
-			// console.log(columns)
-			for (i = 2, t = 0; i < columns.length; ++i) {
-				//console.log(d[columns[i]])
-				t +=  (d[columns[i]] = +d[columns[i]]);
-			}
+// read data
+d3.csv("world_population.csv", 
+	function(d, i, columns) {
+// console.log(columns)
+for (i = 2, t = 0; i < columns.length; ++i) {
+//console.log(d[columns[i]])
+t +=  (d[columns[i]] = +d[columns[i]]);
+}
 
-			d.total = t;
-			if(t < min) { min = t;};
-			if(t > max) { max = t;};
-			return d;
-		},
-		function(error, data) {
-			if (error) throw error;	
+d.total = t;
+if(t < min) { min = t;};
+if(t > max) { max = t;};
+return d;
+},
+function(error, data) {
+	if (error) throw error;	
 
 
-			var byState = {}; 
+	var byState = {}; 
 	data.forEach(function(d) {
-		// Create property for each State, give it value from data
-		byState[d.id] = +d.total; 
+// Create property for each State, give it value from data
+byState[d.id] = +d.total; 
+});
+
+// Draw the USA map with channel
+d3.json("countries.json", drawMap);
+
+d3.select("#svgmap")
+.append("text")
+.attr("class", "info")
+.attr("id", "info")
+.attr("x", 300)
+.attr("dy", "1.2em")
+.style("display", "none")
+.text("-");
+
+function drawMap(error, country) {
+	var width = 1060.42;
+	var height = 660;
+
+	var projection = d3.geoEquirectangular()
+	.fitExtent([[0,0], [width, height]], country);
+
+	geoGenerator = d3.geoPath()
+	.projection(projection);
+
+	var paths = d3.select("#svgmap")
+	.append("g")
+	.attr("id", "country")
+	.selectAll("path")
+	.data(country.features)
+	.enter()
+	.append('path')
+	.attr("id", function(d) { return d.id; })
+	.attr('d', geoGenerator)
+	.on("mouseover", function(d){
+		d3.select("#info")
+		.style("display", null) 
+		.text(d.properties.name);
+	})
+	.on("mouseout", function(d){
+		d3.select("#info")
+		.style("display", null) 
+		.text(" ");
 	});
 
-	// Draw the USA map with channel
-	d3.json("countries.json", drawMap);
 
-	d3.select("#svgmap")
-	.append("text")
-	.attr("class", "info")
-	.attr("id", "info")
-	.attr("x", 120)
-	.attr("dy", "1.2em")
-	.style("display", "none")
-	.text("-");
+	// radius of circle
+	var radius = d3.scaleSqrt()
+	.domain([min, max])
+	.range([0, 50]);
+	console.log(country.features);
 
-	function drawMap(error, country) {
-		var width = 1060.42;
-		var height = 660;
-
-		var projection = d3.geoEquirectangular()
-		.fitExtent([[0,0], [width, height]], country);
-
-		geoGenerator = d3.geoPath()
-		.projection(projection);
-
-		var paths = d3.select("#svgmap")
-		.append("g")
-		.attr("id", "country")
-		.selectAll("path")
-		.data(country.features)
-		.enter()
-		.append('path')
-		.attr("id", function(d) { return d.id; })
-		.attr('d', geoGenerator)
-		.on("mouseover", function(d){
-			d3.select("#info")
-			.style("display", null) 
-			.text(d.properties.name);
-		})
-		.on("mouseout", function(d){
-			d3.select("#info")
-			.style("display", null) 
-			.text(" ");
-		});
-
-
-		// radius of circle
-		var radius = d3.scaleSqrt()
-		.domain([min, max])
-		.range([0, 50]);
-		console.log(country.features);
-
-		d3.select("svg").append("g")
-		.attr("class", "bubble")
-		.selectAll("circle")
-		.data(country.features.sort(function(a, b) { return byState[b] - byState[a]; }))
-		.enter()
-		.append("circle")
-		.attr("transform", function(d) { 
-			return "translate(" + geoGenerator.centroid(d) + ")"; })
-		.attr("r", function(d) { return radius(byState[d.id]); });
-
+	d3.select("svg").append("g")
+	.attr("class", "bubble")
+	.selectAll("circle")
+	.data(country.features.sort(function(a, b) { return byState[b] - byState[a]; }))
+	.enter()
+	.append("circle")
+	.attr("transform", function(d) { 
+		return "translate(" + geoGenerator.centroid(d) + ")"; })
+	.attr("r", function(d) { return radius(byState[d.id]); });
 
 	// Add legend
 	var legend = d3.select("svg").append("g")
