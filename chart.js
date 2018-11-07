@@ -1,3 +1,33 @@
+// Initial drawable area values
+	var margin = {top: 20, right: 40, bottom: 20, left: 40},
+	width = 960 - margin.left - margin.right,
+	height = 500 - margin.top - margin.bottom;
+
+// Specify range of x axis, match state to width
+	var x = d3.scaleBand()
+	.rangeRound([0, width])
+	.paddingInner(0.5)
+	.paddingOuter(0.5);
+
+	// Specify range of y axis, match population to height
+	var y = d3.scaleLinear()
+	.rangeRound([height, 0]);
+
+	// Match age catogories to color
+	var color = d3.scaleOrdinal()
+	.range(["#98abc4", "#8a8aa5", "#7a6887", "#6a496a", "#9e5d57", "#ce7442" ,"#fc8c25"]);
+
+	// x axis
+	var xAxis = d3.axisBottom(x)
+	.scale(x)
+	.tickSize(6)
+	.tickPadding(6);
+
+	// y axis
+	var yAxis = d3.axisLeft(y)
+	.scale(y)
+	.ticks(null, "s");
+
 var min = Number.POSITIVE_INFINITY;
 var max = Number.NEGATIVE_INFINITY;
 
@@ -27,7 +57,7 @@ function(error, data) {
 	console.log("here is the data");
 	console.log(data);
 	// add the bars
-	svg.append("g")
+	d3.select("#svgchart1").append("g")
 	.selectAll("g")
 	.data(d3.stack().keys(keys)(data))
 	.enter()
@@ -49,7 +79,7 @@ function(error, data) {
 	// add the legend
 	var keys = data.columns.slice(1);
 
-	var legend = svg.append("g")
+	var legend = d3.select("#svgchart1").append("g")
 	.attr("font-size", 8)
 	.attr("text-anchor", "end")
 	.attr("font-family", "sans-serif")
@@ -74,7 +104,7 @@ function(error, data) {
 
 
 		  // add the x Axis
-	svg.append("g")
+	d3.select("#svgchart1").append("g")
 	.attr("class", "axisWhite")
 	.attr("transform", "translate(0," + height + ")")
 	.call(xAxis)
@@ -87,7 +117,7 @@ function(error, data) {
 	.text("State");
 
 	// add the y Axis
-	svg.append("g")
+	d3.select("#svgchart1").append("g")
 	.attr("class", "axisNormal")
 	.call(yAxis)
 	.append("text")
