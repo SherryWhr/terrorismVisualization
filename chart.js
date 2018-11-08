@@ -5,7 +5,7 @@ function chart_func(ctry, terr) {
 
     //terr="total";
  // Initial drawable area values
- 	var margin = {top: 20, right: 40, bottom: 20, left: 40},
+ 	var margin = {top: 20, right: 40, bottom: 20, left: 10},
  	width = 600 - margin.left - margin.right,
  	height = 325 - margin.top - margin.bottom;
 
@@ -42,7 +42,11 @@ d3.csv("sum.csv",function(data){
         return +d.attack; })]).nice();
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
-
+    
+    // var g = d3.select("body")
+    //     .append("svg")
+    //     .attr("width", 1000)
+    //     .attr("height", 600);
     var g=d3.select("#svgchart1").append("g");
         //.append("path")
         //.attr("class","line");
@@ -85,7 +89,7 @@ d3.csv("sum.csv",function(data){
         .attr("class", "tooltip")
         .style("display", "none");
 
-     var tooltip = g.append("g")
+    var tooltip = g.append("g")
         .attr("class", "tooltip")
         .style("display", "none");
     
@@ -134,6 +138,8 @@ var links = d3.selectAll('path');
 	// .text("Area (sq mi)");
     
 })
+
+
 // 	// Match age catogories to color
 // 	var color = d3.scaleOrdinal()
 // 	.range(["#98abc4", "#8a8aa5", "#7a6887", "#6a496a", "#9e5d57", "#ce7442" ,"#fc8c25"]);
