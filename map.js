@@ -1,6 +1,8 @@
 function map_func(ctry, terr) {
-	// console.log(ctry)
-	// console.log(terr)
+	console.log(ctry)
+	console.log(terr)
+
+	d3.selectAll("g > *").remove();
 
 	var min = Number.POSITIVE_INFINITY;
 	var max = Number.NEGATIVE_INFINITY;
@@ -8,23 +10,23 @@ function map_func(ctry, terr) {
 
 
 // read data
-d3.csv("terrorism.csv", 
+d3.csv("2017.csv", 
 	function(d, i, columns) {
 		console.log(d)
-		if (d[columns[1]] == ctry){
-			ctry_id = d[columns[0]]
-			console.log(ctry_id)
-		}
+		// if (d[columns[1]] == ctry){
+		// 	ctry_id = d[columns[0]]
+		// 	console.log(ctry_id)
+		// }
 
 
-		for (i = 2, t = 0; i < columns.length; ++i) {
-		//console.log(d[columns[i]])
-		t +=  (d[columns[i]] = +d[columns[i]]);
-	}
+	// 	for (i = 2, t = 0; i < columns.length; ++i) {
+	// 	//console.log(d[columns[i]])
+	// 	t +=  (d[columns[i]] = +d[columns[i]]);
+	// }
 
-	d.total = t;
-	if(t < min) { min = t;};
-	if(t > max) { max = t;};
+	// d.total = t;
+	if(d.total < min) { min = d.total;};
+	if(d.total > max) { max = d.total;};
 	return d;
 },
 function(error, data) {
