@@ -19,6 +19,7 @@ function chart_func(ctry, terr) {
  	var yScale = d3.scaleLinear()
  	.rangeRound([height, 0]);
     
+    
     // var valueline = d3.svg.line()
     //     .x(function(d) { return x(d.year); })
     //     .y(function(d) { return y(d.attack); });
@@ -43,6 +44,12 @@ d3.csv("sum.csv",function(data){
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
     
+    // var chart = d3LineWithLegend()
+    //  .xAxis.label('year')
+    //  .width(width(margin))
+    //  .height(height(margin))
+    //  .yAxis.label('frequency of attacks');
+
     // var g = d3.select("body")
     //     .append("svg")
     //     .attr("width", 1000)
@@ -58,16 +65,16 @@ d3.csv("sum.csv",function(data){
         .attr("cx", function(d) { return xScale(d.year)+30; })
         .attr("cy", function(d) { return yScale(d.attack); })
         .attr("fill","red")
-        .attr("stroke","black")
-        .on("mouseover", function(d) { tooltip.style("display", null);})
-        .on("mouseout", function(d) { tooltip.style("display", "none"); })
-        .on("mousemove", function(d) {
-            //console.log(d);
-            var xPosition = d3.mouse(this)[0] - 5;
-            var yPosition = d3.mouse(this)[1] - 5;
-            tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-            tooltip.select("text").text(d.attack);
-         });
+        .attr("stroke","black");
+        // .on("mouseover", function(d) { tooltip.style("display", null);})
+        // .on("mouseout", function(d) { tooltip.style("display", "none"); })
+        // .on("mousemove", function(d) {
+        //     //console.log(d);
+        //     var xPosition = d3.mouse(this)[0] - 5;
+        //     var yPosition = d3.mouse(this)[1] - 5;
+        //     tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+        //     tooltip.select("text").text(d.attack);
+        //  });
     
     g.append("g")
         .attr("class", "axisNormal")
@@ -89,25 +96,28 @@ d3.csv("sum.csv",function(data){
         var tooltip = g.append("g")
         .attr("class", "tooltip")
         .style("display", "none");
-
-    var tooltip = g.append("g")
-        .attr("class", "tooltip")
-        .style("display", "none");
+/* tooltip */
+//     var tooltip = g.append("g")
+//         .attr("class", "tooltip")
+//         .style("display", "none");
     
-    tooltip.append("rect")
-    .attr("width", 60)
-    .attr("height", 20)
-    .attr("fill", "white")
-    .style("opacity", 0.5);
+//     tooltip.append("rect")
+//     .attr("width", 60)
+//     .attr("height", 20)
+//     .attr("fill", "white")
+//     .style("opacity", 0.5);
 
-    tooltip.append("text")
-    .attr("x", 30)
-    .attr("dy", "1.2em")
-    .style("text-anchor", "middle")
-    .attr("font-size", "12px")
-    .attr("font-weight", "bold");
+//     tooltip.append("text")
+//     .attr("x", 30)
+//     .attr("dy", "1.2em")
+//     .style("text-anchor", "middle")
+//     .attr("font-size", "12px")
+//     .attr("font-weight", "bold");
 
-var links = d3.selectAll('path');
+// var links = d3.selectAll('path');
+
+
+
 //     g.dispatch.on('showTooltip', function(e) {
 //          var offset = $('#test1').offset(), // { left: 0, top: 0 }
 //         left = e.pos[0] + offset.left,
