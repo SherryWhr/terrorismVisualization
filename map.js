@@ -8,10 +8,12 @@ function map_func(ctry, terr) {
 
 
 // read data
-d3.csv("world_population.csv", 
+d3.csv("terrorism.csv", 
 	function(d, i, columns) {
+		console.log(d)
 		if (d[columns[1]] == ctry){
 			ctry_id = d[columns[0]]
+			console.log(ctry_id)
 		}
 
 
@@ -116,5 +118,7 @@ function drawMap(error, country) {
 	.text(d3.format(".1s"));
 }
 })
-	d3.select("#"+ctry_id).attr("fill", "orange")
+	console.log
+	d3.select("#"+ctry_id)
+	.attr("fill", "orange")
 }

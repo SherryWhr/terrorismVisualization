@@ -37,7 +37,7 @@ d3.csv("country_whole.csv",
 			// Create property for each State, give it value from data
 			byState[d.id] = +d.total; 
 		});
-		console.log(data[0].name)
+		console.log(data[0].x)
 		d3.select("#iMode")
 		.selectAll("option")
 		.data(data)
