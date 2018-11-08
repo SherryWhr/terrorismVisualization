@@ -1,8 +1,8 @@
 var min = Number.POSITIVE_INFINITY;
 var max = Number.NEGATIVE_INFINITY;
 
-map_func("All", "All");
-chart_func("All", "All");
+map_func("All", "total");
+chart_func("All", "total");
 
 function openCity(evt, cityName) {
 			var i, tabcontent, tablinks;
