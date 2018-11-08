@@ -39,7 +39,7 @@ d3.csv("sum.csv",function(data){
     yScale.domain([0, d3.max(data, function(d) { 
         console.log("test y axis");
         console.log(d.attack);
-        return d.attack; })]);
+        return +d.attack; })]).nice();
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
 
@@ -54,7 +54,16 @@ d3.csv("sum.csv",function(data){
         .attr("cx", function(d) { return xScale(d.year); })
         .attr("cy", function(d) { return yScale(d.attack); })
         .attr("fill","red")
-        .attr("stroke","black");
+        .attr("stroke","black")
+        .on("mouseover", function(d) { tooltip.style("display", null);})
+        .on("mouseout", function(d) { tooltip.style("display", "none"); })
+        .on("mousemove", function(d) {
+            //console.log(d);
+            var xPosition = d3.mouse(this)[0] - 5;
+            var yPosition = d3.mouse(this)[1] - 5;
+            tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+            tooltip.select("text").text(d.attack);
+         });
     
     g.append("g")
         .attr("class", "axisNormal")
@@ -71,7 +80,46 @@ d3.csv("sum.csv",function(data){
     g.append("g")
         .attr("class", "axisNormal")
         .call(yAxis.ticks(20));
+    
+        var tooltip = g.append("g")
+        .attr("class", "tooltip")
+        .style("display", "none");
 
+     var tooltip = g.append("g")
+        .attr("class", "tooltip")
+        .style("display", "none");
+    
+    tooltip.append("rect")
+    .attr("width", 60)
+    .attr("height", 20)
+    .attr("fill", "white")
+    .style("opacity", 0.5);
+
+    tooltip.append("text")
+    .attr("x", 30)
+    .attr("dy", "1.2em")
+    .style("text-anchor", "middle")
+    .attr("font-size", "12px")
+    .attr("font-weight", "bold");
+
+var links = d3.selectAll('path');
+//     g.dispatch.on('showTooltip', function(e) {
+//          var offset = $('#test1').offset(), // { left: 0, top: 0 }
+//         left = e.pos[0] + offset.left,
+//         top = e.pos[1] + offset.top,
+//         formatter = d3.format(".04f");
+
+//          var content = '<h3>' + e.series.label + '</h3>' +
+//                   '<p>' +
+//                   '<span class="value">[' + e.point[0] + ', ' + formatter(e.point[1]) + ']</span>' +
+//                   '</p>';
+
+//         nvtooltip.show([left, top], content);
+//   });
+
+//   chart.dispatch.on('hideTooltip', function(e) {
+//     nvtooltip.cleanup();
+//   });
 // add the y Axis
 	// d3.select("#svgchart1").append("g")
 	// .attr("class", "axisNormal")
