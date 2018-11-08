@@ -9,71 +9,23 @@ function map_func(ctry, terr) {
 	var ctry_id
 	// var terr_id
 
-// 	switch (terr) {
-//     case "Armed Assault":
-//         terr_id = 2;
-//         break;
-//     case "Assassination":
-//         terr_id = 3;
-//         break;
-//     case "Bombing/Explosion":
-//         terr_id = 4;
-//         break;
-//     case "Facility/Infrastructure Attack":
-//         terr_id = 5;
-//         break;
-//     case "Hijacking":
-//         terr_id = 6;
-//         break;
-//     case "Hostage Taking (Barricade Incident)":
-//         terr_id = 7;
-//         break;
-//     case "Hostage Taking (Kidnapping)":
-//         terr_id = 8;
-//         break;
-//     case "Unarmed Assault":
-//         terr_id = 9;
-//         break;
-//     case "Unknown":
-//         terr_id = 10;
-//         break;
-//     default:
-//         terr_id = 11;
-// }
-
-
 // read data
-d3.csv("2017.csv", 
+d3.csv("2016.csv", 
 	function(d, i, columns) {
-		//console.log(d3.entries(d))
-		// if (d[columns[1]] == ctry){
-		// 	ctry_id = d[columns[0]]
-		// 	console.log(ctry_id)
-		// }
-
-
-	// 	for (i = 2, t = 0; i < columns.length; ++i) {
-	// 	//console.log(d[columns[i]])
-	// 	t +=  (d[columns[i]] = +d[columns[i]]);
-	// }
-
 	// d.total = t;
-	if(d.total < min) { min = d.total;};
-	if(d.total > max) { max = d.total;};
+	// console.log(d.total)
+	// if(d.total < min) { min = d.total;};
+	// if(d.total > max) { max = d.total;};
 	return d;
 },
 function(error, data) {
 	if (error) throw error;	
 
-	//console.log(d3.entries(d3.entries(data)[0].value)[terr_id])
-
-	// data.forEach(function(d){
-	// 	console.log(d[terr])
-	// })
-
 	var byState = {}; 
 	data.forEach(function(d) {
 		byState[d.country] = d[terr]; 
+		// if(byState[d.country] < min) { min = byState[d.country];};
+		// if(byState[d.country] > max) { max = byState[d.country];};
 	});
 
 // Draw the USA map with channel
@@ -105,7 +57,7 @@ function drawMap(error, country) {
 	.data(country.features)
 	.enter()
 	.append('path')
-	.attr("id", function(d) { return d.country; })
+	.attr("id", function(d) { return d.properties.name; })
 	.attr('d', geoGenerator)
 	.on("mouseover", function(d){
 		d3.select("#info")
@@ -118,54 +70,121 @@ function drawMap(error, country) {
 		.text(" ");
 	});
 
-	// radius of circle
-	var radius = d3.scaleSqrt()
-	.domain([min, max])
-	.range([0, 50]);
-	// console.log(country.features);
-	console.log(byState);
 
-	d3.select("svg").append("g")
-	.attr("class", "bubble")
-	.selectAll("circle")
-	.data(country.features.sort(function(a, b) { return byState[b] - byState[a]; }))
-	.enter()
-	.append("circle")
-	.attr("transform", function(d) { 
-		return "translate(" + geoGenerator.centroid(d) + ")"; })
-	.attr("r", function(d) { 
-		if (byState[d.properties.name]){
-		console.log(byState[d.properties.name]);
-		return radius(byState[d.properties.name]); 
-		}else{
-			return 0;
-		}
-	});
+	// d3.select("#"+ctry)
+	// .style("stroke-width", "3px")
+	// .style("fill","blue")
 
-	// Add legend
-	var legend = d3.select("svg").append("g")
-	.attr("class", "legend")
-	.attr("transform", "translate(" + (width - 900) + "," + (height - 250) + ")")
-	.selectAll("g")
-	.data([max/6, max/2, max])
-	.enter()
-	.append("g");
 
-	legend.append("circle")
-	.attr("cy", function(d) { return -radius(d); })
-	.attr("r", radius)
-	.attr("fill", "red")
-	.attr("stroke", "black")
-	.attr("fill-opacity", ".5");
+	// // radius of circle
+	// var radius = d3.scaleSqrt()
+	// .domain([min, max])
+	// .range([0, 50]);
+	// // console.log(country.features);
+	// console.log(byState);
 
-	legend.append("text")
-	.attr("y", function(d) { return -2 * radius(d); })
-	.attr("dy", "1.3em")
-	.attr("font-size", "12spx")
-	.text(d3.format(".1s"));
+	// d3.select("svg").append("g")
+	// .attr("class", "bubble")
+	// .selectAll("circle")
+	// .data(country.features.sort(function(a, b) { return byState[b] - byState[a]; }))
+	// .enter()
+	// .append("circle")
+	// .attr("transform", function(d) { 
+	// 	return "translate(" + geoGenerator.centroid(d) + ")"; })
+	// .attr("r", function(d) { 
+	// 	if (byState[d.properties.name]){
+	// 	console.log(byState[d.properties.name]);
+	// 	return radius(byState[d.properties.name]); 
+	// 	}else{
+	// 		return 0;
+	// 	}
+	// });
+
+	// // Add legend
+	// var legend = d3.select("svg").append("g")
+	// .attr("class", "legend")
+	// .attr("transform", "translate(" + (width - 900) + "," + (height - 250) + ")")
+	// .selectAll("g")
+	// .data([max/6, max/2, max])
+	// .enter()
+	// .append("g");
+
+	// legend.append("circle")
+	// .attr("cy", function(d) { return -radius(d); })
+	// .attr("r", radius)
+	// .attr("fill", "red")
+	// .attr("stroke", "black")
+	// .attr("fill-opacity", ".5");
+
+	// legend.append("text")
+	// .attr("y", function(d) { return -2 * radius(d); })
+	// .attr("dy", "1.3em")
+	// .attr("font-size", "12spx")
+	// .text(d3.format(".1s"));
+
+	var x = d3.scaleLinear()
+	.domain([0, 1620])
+	.rangeRound([600, 860]);
+
+	var color = d3.scaleThreshold()
+	.domain([0, 45, 135, 270, 450, 675, 945, 1260, 1620])
+	// .domain(d3.range(0,1440,160))
+	.range(d3.schemeReds[9]);
+
+	d3.selectAll("path")
+	.data(country.features)
+	.style("stroke", "black")
+	.style("fill", function(d) {
+        return color(byState[d.properties.name]); // get rate value for specific object
+        // pass rate to channelcolor function, return channelcolor based on scale
+    });
+
+
+
+ // console.log(color)
+
+ var g = d3.select("#svgmap").append("g")
+ .attr("class", "key")
+ .attr("transform", "translate(0,40)");
+
+ g.selectAll("rect")
+ .data(color.range().map(function(d) {
+ 	d = color.invertExtent(d);
+ 	if (d[0] == null) d[0] = x.domain()[0];
+ 	if (d[1] == null) d[1] = x.domain()[1];
+ 	// console.log(min)
+ 	// console.log(max)
+ 	return d;
+ }))
+ .enter().append("rect")
+ .attr("height", 8)
+ .attr("x", function(d) { return x(d[0]); })
+ .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+ .attr("fill", function(d) { return color(d[0]); });
+
+ g.append("text")
+ .attr("class", "caption")
+ .attr("x", x.range()[0])
+ .attr("y", -6)
+ .attr("fill", "#000")
+ .attr("text-anchor", "start")
+ .attr("font-weight", "bold")
+ .text("Terrorism rate");
+
+ g.call(d3.axisBottom(x)
+ 	.tickSize(13)
+ 	.tickFormat(function(x, i) { return i ? x : x; })
+ 	.tickValues(color.domain()))
+ .select(".domain")
+ .remove();
+
+
+
+	d3.select("#"+ctry)
+	.style("stroke-width", "5px")
+	// .style("fill","blue")
 }
 })
-	console.log
-	d3.select("#"+ctry_id)
-	.attr("fill", "orange")
+
 }
+
