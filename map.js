@@ -9,37 +9,37 @@ function map_func(ctry, terr) {
 	var ctry_id
 	var terr_id
 
-// 	switch (terr) {
-//     case "Armed Assault":
-//         terr_id = 2;
-//         break;
-//     case "Assassination":
-//         terr_id = 3;
-//         break;
-//     case "Bombing/Explosion":
-//         terr_id = 4;
-//         break;
-//     case "Facility/Infrastructure Attack":
-//         terr_id = 5;
-//         break;
-//     case "Hijacking":
-//         terr_id = 6;
-//         break;
-//     case "Hostage Taking (Barricade Incident)":
-//         terr_id = 7;
-//         break;
-//     case "Hostage Taking (Kidnapping)":
-//         terr_id = 8;
-//         break;
-//     case "Unarmed Assault":
-//         terr_id = 9;
-//         break;
-//     case "Unknown":
-//         terr_id = 10;
-//         break;
-//     default:
-//         terr_id = 11;
-// }
+	switch (terr) {
+    case "Armed Assault":
+        terr_id = 2;
+        break;
+    case "Assassination":
+        terr_id = 3;
+        break;
+    case "Bombing/Explosion":
+        terr_id = 4;
+        break;
+    case "Facility/Infrastructure Attack":
+        terr_id = 5;
+        break;
+    case "Hijacking":
+        terr_id = 6;
+        break;
+    case "Hostage Taking (Barricade Incident)":
+        terr_id = 7;
+        break;
+    case "Hostage Taking (Kidnapping)":
+        terr_id = 8;
+        break;
+    case "Unarmed Assault":
+        terr_id = 9;
+        break;
+    case "Unknown":
+        terr_id = 10;
+        break;
+    default:
+        terr_id = 11;
+}
 
 
 // read data
@@ -65,17 +65,16 @@ d3.csv("2017.csv",
 function(error, data) {
 	if (error) throw error;	
 
-	//console.log(d3.entries(d3.entries(data)[0].value)[terr_id])
+	console.log(d3.entries(d3.entries(data)[0].value)[terr_id])
 
-	data.forEach(function(d){
-		console.log(d[terr])
-	})
+	// data.forEach(function(d){
+	// 	console.log(d[terr])
+	// })
 
 	var byState = {}; 
 	data.forEach(function(d) {
-// Create property for each State, give it value from data
-byState[d.id] = +d.total; 
-});
+		byState[d.country] = d[terr]; 
+	});
 
 // Draw the USA map with channel
 d3.json("countries.json", drawMap);
@@ -106,7 +105,7 @@ function drawMap(error, country) {
 	.data(country.features)
 	.enter()
 	.append('path')
-	.attr("id", function(d) { return d.id; })
+	.attr("id", function(d) { return d.country; })
 	.attr('d', geoGenerator)
 	.on("mouseover", function(d){
 		d3.select("#info")
@@ -124,6 +123,7 @@ function drawMap(error, country) {
 	.domain([min, max])
 	.range([0, 50]);
 	console.log(country.features);
+	console.log(byState);
 
 	d3.select("svg").append("g")
 	.attr("class", "bubble")
@@ -133,7 +133,9 @@ function drawMap(error, country) {
 	.append("circle")
 	.attr("transform", function(d) { 
 		return "translate(" + geoGenerator.centroid(d) + ")"; })
-	.attr("r", function(d) { return radius(byState[d.id]); });
+	.attr("r", function(d) { 
+		console.log(byState[d.properties.name]);
+		return radius(byState[d.properties.name]); });
 
 	// Add legend
 	var legend = d3.select("svg").append("g")
