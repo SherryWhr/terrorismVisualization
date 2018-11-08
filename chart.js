@@ -1,23 +1,91 @@
+console.log("enter chart");
 function chart_func(ctry, terr) {
-// 	console.log(ctry)
-// 	console.log(terr)
+ 	console.log(ctry)
+ 	console.log(terr)
 
+    terr="total";
+ // Initial drawable area values
+ 	var margin = {top: 20, right: 40, bottom: 20, left: 40},
+ 	width = 600 - margin.left - margin.right,
+ 	height = 325 - margin.top - margin.bottom;
 
-// // Initial drawable area values
-// 	var margin = {top: 20, right: 40, bottom: 20, left: 40},
-// 	width = 600 - margin.left - margin.right,
-// 	height = 325 - margin.top - margin.bottom;
+ // Specify range of x axis, match state to width
+ 	var xScale = d3.scaleBand()
+ 	.rangeRound([0, width])
+ 	.paddingInner(0.5)
+ 	.paddingOuter(0.5);
 
-// // Specify range of x axis, match state to width
-// 	var x = d3.scaleBand()
-// 	.rangeRound([0, width])
-// 	.paddingInner(0.5)
-// 	.paddingOuter(0.5);
+ 	// Specify range of y axis, match population to height
+ 	var yScale = d3.scaleLinear()
+ 	.rangeRound([height, 0]);
+    
+    // var valueline = d3.svg.line()
+    //     .x(function(d) { return x(d.year); })
+    //     .y(function(d) { return y(d.attack); });
 
-// 	// Specify range of y axis, match population to height
-// 	var y = d3.scaleLinear()
-// 	.rangeRound([height, 0]);
+//plot the world data
+d3.csv("sum.csv",function(data){
+    //console.log(data[terr]);
+    return{
+        year : data.iyear,
+        attack : data[terr]
+    }
+},function(error,data){
+    if(error) throw error;
+    console.log("finished read data");
+    console.log(data[1]);
 
+    xScale.domain(data.map(function(d) { return d.year; }));
+    yScale.domain([0, d3.max(data, function(d) { 
+        console.log("test y axis");
+        console.log(d.attack);
+        return d.attack; })]);
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+    var g=d3.select("#svgchart1").append("g");
+        //.append("path")
+        //.attr("class","line");
+    //.attr("d", valueline(data));
+    g.selectAll("dot")
+        .data(data)
+        .enter().append("circle")
+        .attr("r", 3.5)
+        .attr("cx", function(d) { return xScale(d.year); })
+        .attr("cy", function(d) { return yScale(d.attack); })
+        .attr("fill","red")
+        .attr("stroke","black");
+    
+    g.append("g")
+        .attr("class", "axisNormal")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .append("text")
+            .attr("class", "axisNormal")
+            .attr("text-anchor", "end")
+            .attr("x", width)
+            .attr("y", height)
+            .text("Year");
+
+    // Add the Y Axis
+    g.append("g")
+        .attr("class", "axisNormal")
+        .call(yAxis.ticks(20));
+
+// add the y Axis
+	// d3.select("#svgchart1").append("g")
+	// .attr("class", "axisNormal")
+	// .call(yAxis)
+	// .append("text")
+	// .attr("x", -45)
+	// .attr("y", y(y.ticks().pop()) + 8)
+	// .attr("fill", "#000")
+	// .attr("text-anchor", "start")
+	// .attr("font-size", 8)
+	// .attr("transform", "rotate(-90)")
+	// .text("Area (sq mi)");
+    
+})
 // 	// Match age catogories to color
 // 	var color = d3.scaleOrdinal()
 // 	.range(["#98abc4", "#8a8aa5", "#7a6887", "#6a496a", "#9e5d57", "#ce7442" ,"#fc8c25"]);
