@@ -55,7 +55,7 @@ d3.csv("sum.csv",function(data){
         .data(data)
         .enter().append("circle")
         .attr("r", 3.5)
-        .attr("cx", function(d) { return xScale(d.year); })
+        .attr("cx", function(d) { return xScale(d.year)+30; })
         .attr("cy", function(d) { return yScale(d.attack); })
         .attr("fill","red")
         .attr("stroke","black")
@@ -71,7 +71,7 @@ d3.csv("sum.csv",function(data){
     
     g.append("g")
         .attr("class", "axisNormal")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(30," + height + ")")
         .call(xAxis)
         .append("text")
             .attr("class", "axisNormal")
@@ -83,7 +83,8 @@ d3.csv("sum.csv",function(data){
     // Add the Y Axis
     g.append("g")
         .attr("class", "axisNormal")
-        .call(yAxis.ticks(20));
+        .attr("transform", "translate(30,0)")
+        .call(yAxis.ticks(null,"s"));
     
         var tooltip = g.append("g")
         .attr("class", "tooltip")
