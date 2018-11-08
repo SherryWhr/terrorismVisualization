@@ -180,6 +180,7 @@ function drawMap(error, country) {
 
 	d3.select("#"+ctry)
 	.style("stroke-width", "5px")
+	.style("fill", "yellow")
 	// .style("fill","blue")
 }
 })
