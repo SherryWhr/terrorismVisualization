@@ -178,8 +178,6 @@ function drawMap(error, country) {
  .select(".domain")
  .remove();
 
-
-
 	d3.select("#"+ctry)
 	.style("stroke-width", "5px")
 	// .style("fill","blue")
