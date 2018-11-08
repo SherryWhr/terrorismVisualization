@@ -43,11 +43,11 @@ d3.csv("sum.csv",function(data){
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
     
-    // var g = d3.select("body")
-    //     .append("svg")
-    //     .attr("width", 1000)
-    //     .attr("height", 600);
-    var g=d3.select("#svgchart1").append("g");
+    var g = d3.select("#svgchart1")
+        .append("g")
+        .attr("width", 1000)
+        .attr("height", 600);
+    // var g=d3.select("#svgchart1").append("g");
         //.append("path")
         //.attr("class","line");
     //.attr("d", valueline(data));
@@ -76,12 +76,14 @@ d3.csv("sum.csv",function(data){
         .append("text")
             .attr("class", "axisNormal")
             .attr("text-anchor", "end")
-            .attr("x", width)
+            .attr("x", width-100)
             .attr("y", height)
             .text("Year");
 
     // Add the Y Axis
-    g.append("g")
+    	g.append("g")
+    	// .attr("width", 570)
+     //    .attr("height", 325)
         .attr("class", "axisNormal")
         .call(yAxis.ticks(20));
     
