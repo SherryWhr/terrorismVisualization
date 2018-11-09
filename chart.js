@@ -1,9 +1,13 @@
-console.log("enter chart");
+
+//var g=d3.select("#svgchart1").append("g");
+//var g2=d3.select("#svgchart2").append("g");
+
 function chart_func(ctry, terr) {
 	console.log(ctry)
 	console.log(terr)
-
-    //terr="total";
+	var g=d3.select("#svgchart1").append("g");
+	var g2=d3.select("#svgchart2").append("g");
+    
 // Initial drawable area values
 	 var margin = {top: 20, right: 40, bottom: 20, left: 10},
 		 width = 600 - margin.left - margin.right,
@@ -44,7 +48,7 @@ function chart_func(ctry, terr) {
 		        return +d.attack; })]).nice();
 			var xAxis = d3.axisBottom(xScale);
 			var yAxis = d3.axisLeft(yScale);
-
+			//var g=d3.select("#svgchart1").append("g");
 		    // var chart = d3LineWithLegend()
 		    //  .xAxis.label('year')
 		    //  .width(width(margin))
@@ -55,7 +59,6 @@ function chart_func(ctry, terr) {
 		    //     .append("svg")
 		    //     .attr("width", 1000)
 		    //     .attr("height", 600);
-		    var g=d3.select("#svgchart1").append("g");
 		        //.append("path")
 		        //.attr("class","line");
 			//.attr("d", valueline(data));
@@ -88,31 +91,15 @@ function chart_func(ctry, terr) {
 				.attr("fill","steelblue")
 				// .attr("opacity","0.8")
 				.attr("stroke","steelblue")
-				// .on("mouseover",function(d){
-				// 	console.log(d.attack);
-				// 	tooltip.style("display", null);
-				// 	var xPosition = d3.mouse(this)[0] - 5;
-	            // 	var yPosition = d3.mouse(this)[1] - 5;
-	           	// 	tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-	            // 	tooltip.select("text").text(d.attack);
-				// })
-	            // .on("mouseout", function(d){
-				// 	tooltip.style("display", "none");
-				// });
-				
-	        // .on("mousemove", function(d) {
-	        //     //console.log(d);
-	        //     console.log(d.attack);
-			// 		tooltip.style("display", "inline-block");
-			// 		var xPosition = d3.mouse(this)[0] - 5;
-	        //     	var yPosition = d3.mouse(this)[1] - 5;
-	        //    		tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-	        //     	tooltip.select("text").text(d.attack);
-	        //  });
-	        .on("mouseover", function(d) { tooltip.style("display", null);})
-	        .on("mouseout", function(d) { tooltip.style("display", "none"); })
+	        .on("mouseover", function(d) { 
+				showNum.style("display", null);
+				tooltip.style("display", null);})
+	        .on("mouseout", function(d) { 
+				showNum.style("display","none")
+				tooltip.style("display", "none"); })
 	        .on("mousemove", function(d) {
 					//console.log(d);
+					showNum.text("num: "+d.attack);
 					var xPosition = d3.mouse(this)[0] -5;
 					var yPosition = d3.mouse(this)[1] -30;
 					console.log(xPosition);
@@ -167,7 +154,7 @@ function chart_func(ctry, terr) {
 		                  .attr("font-weight", "bold")
 		                  .text("frequency of attacks");
 			
-			var tooltip = d3.select("#svgchart1").append("g")
+			var tooltip = g.append("g")
 		                  .attr("class", "tooltip")
 		                  .style("display", "none");
 
@@ -182,7 +169,7 @@ function chart_func(ctry, terr) {
 		                  .attr("dy", "1.2em")
 		                  .style("text-anchor", "middle")
 		                  .attr("fill","darkOrange")
-		                  .attr("font-size", "12px")
+		                  .attr("font-size", "16px")
 		                  .attr("font-weight", "bold");
 			
 			g.append("text")
@@ -193,7 +180,14 @@ function chart_func(ctry, terr) {
         		.style("text-decoration", "underline")  
         		.text("World");
 				
-
+			var showNum=g.append("text")
+				.attr("x", (width-20))             
+        		.attr("y", margin.top-5)
+        		.attr("text-anchor", "middle")  
+				.style("font-size", "16px") 
+				.style("fill","darkOrange");
+        		//.style("text-decoration", "underline")  
+        		//.text("World");
 
 
 		//     g.dispatch.on('showTooltip', function(e) {
@@ -250,8 +244,8 @@ d3.csv("terrorism.csv",function(data){
 				return +d.attack; })]).nice();
 			var xAxis = d3.axisBottom(xScale);
 			var yAxis = d3.axisLeft(yScale);
-
-			var g2 = d3.select("#svgchart2").append("g");
+			
+			//var g2=d3.select("#svgchart2").append("g");
 
 			g2.selectAll("dot")
 			.data(filtered)
@@ -262,16 +256,23 @@ d3.csv("terrorism.csv",function(data){
 			.attr("fill","steelblue")
 			// .attr("opacity","0.8")
 			.attr("stroke","steelblue")
-			.on("mouseover", function(d) { tooltip.style("display", null);})
-			.on("mouseout", function(d) { tooltip.style("display", "none"); })
+			.on("mouseover", function(d) { 
+				showNum.style("display",null);
+				tooltip.style("display", null);})
+			.on("mouseout", function(d) { 
+				showNum.style("display","none");
+				tooltip.style("display", "none"); })
 			.on("mousemove", function(d) {
 				//console.log(d);
+				
 				var xPosition = d3.mouse(this)[0] -5;
 				var yPosition = d3.mouse(this)[1] -30;
 				console.log(xPosition);
 				console.log(yPosition);
 				tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
 				tooltip.select("text").text(d.attack);
+				//showNum.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+				showNum.text("num: " + d.attack);
 			});
 
 			var lineGenerator = d3.line()
@@ -345,7 +346,13 @@ d3.csv("terrorism.csv",function(data){
 						  .style("font-size", "16px") 
 						  .style("text-decoration", "underline")  
 						  .text(ctry);
-
+					
+					var showNum=g2.append("text")
+						  .attr("x", (width-20))             
+						  .attr("y", margin.top-5)
+						  .attr("text-anchor", "middle")  
+						  .style("font-size", "16px") 
+						  .style("fill","darkOrange");
 
 		              })
 	
