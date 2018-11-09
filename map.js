@@ -9,15 +9,23 @@ function map_func(ctry, terr) {
 	var ctry_id
 	// var terr_id
 
-	d3.select("#svgslider")
-	.append("input")
-	.attr("id", "ex8")
-	.attr("data-slider-id", "ex1Slider")
-	.attr("type", "text")
-	.attr("data-slider-min", "0")
-	.attr("data-slider-max", "20")
-	.attr("data-slider-step", "1")
-	.attr("data-slider-value", "14")
+	// d3.select("#svgslider")
+	// .append("input")
+	// .attr("id", "ex8")
+	// .attr("data-slider-id", "ex1Slider")
+	// .attr("type", "text")
+	// .attr("data-slider-min", "0")
+	// .attr("data-slider-max", "20")
+	// .attr("data-slider-step", "1")
+	// .attr("data-slider-value", "14")
+
+	d3.select("#range")
+	.style('height', "60")
+	.style('width', "100%")
+
+	d3.selectAll("div").select("#ex1Slider")
+	.style('height', "100")
+	.style('width', "100%")
 
 	var slider = new Slider("#ex8", {
 		tooltip: 'always'});
