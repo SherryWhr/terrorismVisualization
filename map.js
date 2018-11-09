@@ -19,9 +19,9 @@ function map_func(ctry, terr) {
 	// .attr("data-slider-step", "1")
 	// .attr("data-slider-value", "14")
 
-	d3.select("#range")
-	.style('height', "60")
-	.style('width', "100%")
+	// d3.select("#range")
+	// .style('height', "60")
+	// .style('width', "100%")
 
 	var slider = new Slider("#ex8", {
 		tooltip: 'always'});
@@ -29,13 +29,18 @@ function map_func(ctry, terr) {
 	var value = slider.getValue();
 
 	slider
-	.setValue(5)
-	.setValue(7);
+	.setValue(2007)
+	.setValue(2008)
+	.setValue(2009)
+	.setValue(2010)
+	.setValue(2011)
+	.setValue(2012)
+	.setValue(2013)
+	.setValue(2014)
+	.setValue(2015)
+	.setValue(2016)
+	.setValue(2017);
 
-	
-	// d3.select("#ex1Slider")
-	// .style('height', "100")
-	// .style('width', "100%")
 
 // read data
 d3.csv("2016.csv", 
