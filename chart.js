@@ -25,6 +25,7 @@
 	    //     .y(function(d) { return y(d.attack); });
 
 	//plot the world data
+
 	d3.csv("sum.csv",function(data){
 	    //console.log(data[terr]);
 	    return{
@@ -57,7 +58,27 @@
 	    var g=d3.select("#svgchart1").append("g");
 	        //.append("path")
 	        //.attr("class","line");
-	    //.attr("d", valueline(data));
+		//.attr("d", valueline(data));
+	
+		// var tipMouseover = function(d) {
+		// 		// var color = colorScale(d.manufacturer);
+		// 	var html  = d.year + "<br/>" +
+		// 					"<span style='color:steelblue;'>" + d.attack + "</span>";
+		// 		console.log("html");
+		// 		tooltip.html(html)
+		// 			.style("left", (d3.event.pageX + 15) + "px")
+		// 			.style("top", (d3.event.pageY - 28) + "px")
+		// 		  .transition()
+		// 			.duration(200) // ms
+		// 			.style("opacity", .9);
+		// 		};
+
+		var tipMouseout = function(d) {
+				console.log("mouseout");
+				tooltip.transition()
+						.duration(300) // ms
+						.style("opacity", 0); // don't care about position!
+			};
 	    g.selectAll("dot")
 	        .data(data)
 	        .enter().append("circle")
@@ -66,7 +87,18 @@
 	        .attr("cy", function(d) { return yScale(d.attack); })
 			.attr("fill","steelblue")
 			// .attr("opacity","0.8")
-	        .attr("stroke","steelblue");
+			.attr("stroke","steelblue")
+			.on("mouseover",function(d){
+				console.log(d.attack);
+				tooltip.style("display", "inline-block");
+				var xPosition = d3.mouse(this)[0] - 5;
+            	var yPosition = d3.mouse(this)[1] - 5;
+           		tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+            	tooltip.select("text").text(d.attack);
+			})
+            .on("mouseout", function(d){
+				tooltip.style("display", "none");
+			});
 	        // .on("mouseover", function(d) { tooltip.style("display", null);})
 	        // .on("mouseout", function(d) { tooltip.style("display", "none"); })
 	        // .on("mousemove", function(d) {
@@ -122,29 +154,23 @@
 	                  .attr("fill", "#000")
 	                .attr("font-weight", "bold")
 	                  .text("frequency of attacks");
-
-	        var tooltip = g.append("g")
-	        .attr("class", "tooltip")
-	        .style("display", "none");
-	/* tooltip */
-	//     var tooltip = g.append("g")
-	//         .attr("class", "tooltip")
-	//         .style("display", "none");
+			var tooltip = g.append("g")
+				.attr("class", "tooltip")
+				.style("display", "none");
+			
+				tooltip.append("rect")
+				  .attr("width", 60)
+				  .attr("height", 20)
+				  .attr("fill", "white")
+				  .style("opacity", 0.5);
+	  
+				tooltip.append("text")
+				  .attr("x", 30)
+				  .attr("dy", "1.2em")
+				  .style("text-anchor", "middle")
+				  .attr("font-size", "12px")
+				  .attr("font-weight", "bold");
 	    
-	//     tooltip.append("rect")
-	//     .attr("width", 60)
-	//     .attr("height", 20)
-	//     .attr("fill", "white")
-	//     .style("opacity", 0.5);
-
-	//     tooltip.append("text")
-	//     .attr("x", 30)
-	//     .attr("dy", "1.2em")
-	//     .style("text-anchor", "middle")
-	//     .attr("font-size", "12px")
-	//     .attr("font-weight", "bold");
-
-	// var links = d3.selectAll('path');
 
 
 
@@ -178,7 +204,7 @@
 		// .attr("transform", "rotate(-90)")
 		// .text("Area (sq mi)");
 	    
-	})
+			})
 
 
 	// 	// Match age catogories to color
