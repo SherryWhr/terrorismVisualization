@@ -62,10 +62,11 @@
 	        .data(data)
 	        .enter().append("circle")
 	        .attr("r", 3.5)
-	        .attr("cx", function(d) { return xScale(d.year)+30; })
+	        .attr("cx", function(d) { return xScale(d.year)+40; })
 	        .attr("cy", function(d) { return yScale(d.attack); })
-	        .attr("fill","red")
-	        .attr("stroke","black");
+			.attr("fill","steelblue")
+			// .attr("opacity","0.8")
+	        .attr("stroke","steelblue");
 	        // .on("mouseover", function(d) { tooltip.style("display", null);})
 	        // .on("mouseout", function(d) { tooltip.style("display", "none"); })
 	        // .on("mousemove", function(d) {
@@ -77,14 +78,16 @@
 			//  });
 		var lineGenerator = d3.line()
 			.x(function(d) { 
-				return xScale(d.year)+30; 
+				return xScale(d.year)+40; 
 			})
 			.y(function(d) { 
 				return yScale(d.attack); 
 			});	
 		
+			/* plot path of the graph */
 		g.append("path")
-			.attr("fill", "none")
+			.attr("class","chart")
+			.style("fill", "none")
 			.attr("stroke", "steelblue")
 			.attr("stroke-width", 2)
 			.attr("stroke-linejoin", "round")
