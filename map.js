@@ -23,19 +23,19 @@ function map_func(ctry, terr) {
 	.style('height', "60")
 	.style('width', "100%")
 
-	d3.selectAll("div").select("#ex1Slider")
-	.style('height', "100")
-	.style('width', "100%")
-
 	var slider = new Slider("#ex8", {
 		tooltip: 'always'});
 	// Call a method on the slider
 	var value = slider.getValue();
 
-// For non-getter methods, you can chain together commands
-slider
-.setValue(5)
-.setValue(7);
+	slider
+	.setValue(5)
+	.setValue(7);
+
+	
+	// d3.select("#ex1Slider")
+	// .style('height', "100")
+	// .style('width', "100%")
 
 // read data
 d3.csv("2016.csv", 
