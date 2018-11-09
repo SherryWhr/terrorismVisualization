@@ -8,15 +8,26 @@ function map_func(ctry, terr) {
 	var max = Number.NEGATIVE_INFINITY;
 	var ctry_id
 	// var terr_id
+
+	d3.select("#svgslider")
+	.append("input")
+	.attr("id", "ex8")
+	.attr("data-slider-id", "ex1Slider")
+	.attr("type", "text")
+	.attr("data-slider-min", "0")
+	.attr("data-slider-max", "20")
+	.attr("data-slider-step", "1")
+	.attr("data-slider-value", "14")
+
 	var slider = new Slider("#ex8", {
-	tooltip: 'always'});
+		tooltip: 'always'});
 	// Call a method on the slider
-var value = slider.getValue();
+	var value = slider.getValue();
 
 // For non-getter methods, you can chain together commands
 slider
-	.setValue(5)
-	.setValue(7);
+.setValue(5)
+.setValue(7);
 
 // read data
 d3.csv("2016.csv", 
@@ -187,9 +198,9 @@ function drawMap(error, country) {
  .select(".domain")
  .remove();
 
-	d3.select("#"+ctry)
-	.style("stroke-width", "5px")
-	.style("fill", "yellow")
+ d3.select("#"+ctry)
+ .style("stroke-width", "5px")
+ .style("fill", "yellow")
 	// .style("fill","blue")
 }
 })
