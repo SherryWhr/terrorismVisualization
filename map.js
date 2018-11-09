@@ -2,12 +2,21 @@ function map_func(ctry, terr) {
 	console.log(ctry)
 	console.log(terr)
 
-	d3.selectAll("g > *").remove();
+	d3.selectAll("svg > *").remove();
 
 	var min = Number.POSITIVE_INFINITY;
 	var max = Number.NEGATIVE_INFINITY;
 	var ctry_id
 	// var terr_id
+	var slider = new Slider("#ex8", {
+	tooltip: 'always'});
+	// Call a method on the slider
+var value = slider.getValue();
+
+// For non-getter methods, you can chain together commands
+slider
+	.setValue(5)
+	.setValue(7);
 
 // read data
 d3.csv("2016.csv", 
