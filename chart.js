@@ -319,7 +319,8 @@ d3.csv("terrorism.csv",function(data){
 		                  .attr("fill", "#000")
 		                  .attr("font-weight", "bold")
 		                  .text("frequency of attacks");
-		                  var tooltip = d3.select("#svgchart2").append("g")
+			
+			var tooltip = g2.append("g")
 		                  .attr("class", "tooltip")
 		                  .style("display", "none");
 
