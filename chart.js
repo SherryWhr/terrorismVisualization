@@ -345,7 +345,14 @@ d3.csv("terrorism.csv",function(data){
 						  .attr("text-anchor", "middle")  
 						  .style("font-size", "16px") 
 						  .style("text-decoration", "underline")  
-						  .text(ctry);
+						  .text(function(d){
+							  console.log("test ctry: "+ctry);
+							  if(ctry=="All"||ctry=="Country/Region"){
+								  return("PLEASE SELECT A COUNTRY");
+							  }else{
+								  return ctry;
+							  }
+						  });
 					
 					var showNum=g2.append("text")
 						  .attr("x", (width-20))             
