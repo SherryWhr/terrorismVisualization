@@ -59,6 +59,9 @@ d3.selectAll("button")
 d3.selectAll("#iMode")
 .on("change", changed)
 
+d3.selectAll("#year_selection")
+.on("change", drawMapTable)
+
 
 // Change from selection
 function changed() {
@@ -76,6 +79,27 @@ function changed() {
 		}}
 
 	// mod is selected country, buttonSelect Selected attack type
-	map_func(mod, buttonSelect);
+	drawMapTable();
 	chart_func(mod, buttonSelect);
 	}
+
+
+function drawMapTable(mod, buttonSelect){ 
+	// Get mode from the dropdown select
+	var sect = document.getElementById("iMode");
+	var mod = sect.options[sect.selectedIndex].value;
+
+	// Get button
+	var button = document.getElementsByClassName("tabcontent");
+	var buttonSelect;
+
+	for (i = 0; i < button.length; i++){
+		if(button[i].style.display=="block"){
+			buttonSelect = button[i].id;
+		}}
+
+	var year = document.getElementById("year_selection")
+	console.log("year_selection")
+	console.log(year)
+	map_func(mod, buttonSelect, year);
+}

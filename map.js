@@ -1,8 +1,9 @@
 function map_func(ctry, terr) {
-	console.log(ctry)
-	console.log(terr)
+	// console.log(ctry)
+	// console.log(terr)
 
 	d3.selectAll("svg > *").remove();
+	d3.selectAll("#yearSlider").remove();
 
 	var min = Number.POSITIVE_INFINITY;
 	var max = Number.NEGATIVE_INFINITY;
@@ -12,7 +13,7 @@ function map_func(ctry, terr) {
 	// d3.select("#svgslider")
 	// .append("input")
 	// .attr("id", "ex8")
-	// .attr("data-slider-id", "ex1Slider")
+	// .attr("data-slider-id", "yearSlider")
 	// .attr("type", "text")
 	// .attr("data-slider-min", "0")
 	// .attr("data-slider-max", "20")
@@ -23,23 +24,23 @@ function map_func(ctry, terr) {
 	// .style('height', "60")
 	// .style('width', "100%")
 
-	var slider = new Slider("#ex8", {
+	var slider = new Slider("#year_selection", {
 		tooltip: 'always'});
-	// Call a method on the slider
 	var value = slider.getValue();
+	console.log(value)
 
-	slider
-	.setValue(2007)
-	.setValue(2008)
-	.setValue(2009)
-	.setValue(2010)
-	.setValue(2011)
-	.setValue(2012)
-	.setValue(2013)
-	.setValue(2014)
-	.setValue(2015)
-	.setValue(2016)
-	.setValue(2017);
+	// slider
+	// .setValue(2007)
+	// .setValue(2008)
+	// .setValue(2009)
+	// .setValue(2010)
+	// .setValue(2011)
+	// .setValue(2012)
+	// .setValue(2013)
+	// .setValue(2014)
+	// .setValue(2015)
+	// .setValue(2016)
+	// .setValue(2017);
 
 
 // read data

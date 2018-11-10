@@ -3,8 +3,8 @@
 //var g2=d3.select("#svgchart2").append("g");
 
 function chart_func(ctry, terr) {
-	console.log(ctry)
-	console.log(terr)
+	// console.log(ctry)
+	// console.log(terr)
 	var g=d3.select("#svgchart1").append("g");
 	var g2=d3.select("#svgchart2").append("g");
     
@@ -38,8 +38,8 @@ function chart_func(ctry, terr) {
 		    }
 		},function(error,data){
 			if(error) throw error;
-			console.log("finished read data");
-			console.log(data[1]);
+			// console.log("finished read data");
+			// console.log(data[1]);
 
 			xScale.domain(data.map(function(d) { return d.year; }));
 			yScale.domain([0, d3.max(data, function(d) { 
@@ -236,7 +236,7 @@ d3.csv("terrorism.csv",function(data){
 			// console.log("draw country plot");
 			// console.log(data);
 			filtered = data.filter(function (a) { return a.country == ctry; });
-			console.log(filtered);
+			// console.log(filtered);
 			xScale.domain([2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017]);
 			yScale.domain([0, d3.max(filtered, function(d) { 
 				console.log("chart2 test y axis");

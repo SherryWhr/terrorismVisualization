@@ -1,6 +1,6 @@
-console.log("table js");
+// console.log("table js");
 var widthOfWin=$(window).width(); //the width of window
-console.log(widthOfWin);
+// console.log(widthOfWin);
 
 var margin = {top: 20, right: 40, bottom: 20, left: 10},
     width =  widthOfWin/2- margin.left - margin.right,
@@ -55,6 +55,6 @@ d3.csv("terrorism.csv",function(error,data){
 
     var keys = data.columns;
     
-    console.log(keys);
+    // console.log(keys);
     tabulate(keys,data);
 })
