@@ -1,6 +1,6 @@
 // console.log("table js");
 var widthOfWin=$(window).width(); //the width of window
-// console.log(widthOfWin);
+console.log(widthOfWin);
 
 var margin = {top: 20, right: 40, bottom: 20, left: 10},
     width =  widthOfWin/2- margin.left - margin.right,
@@ -11,9 +11,14 @@ var margin = {top: 20, right: 40, bottom: 20, left: 10},
 //     .attr("height",600);
 
 function tabulate(columnNames, data) {
-    var table = d3.select('body').append('table');
+    
+    var table = d3.select('#table_wrapper').append('table')
+    .attr("id","scrollableTable")
+    .attr("width",width);
+    
     var thead = table.append('thead');
     var	tbody = table.append('tbody');
+    
 
     // append the header row
     thead.append('tr')
@@ -22,8 +27,13 @@ function tabulate(columnNames, data) {
       .enter()
       .append('th')
       .text(function (d) { 
+          if(d=="iyear"){
+              return "year";
+          }
           return d; 
-      });
+      })
+      .style("text-decoration", "underline");
+      //.attr("position","relative");
 
     // create a row for each object in the data
     var rows = tbody.selectAll('tr')
