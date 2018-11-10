@@ -69,8 +69,10 @@ d3.csv("terrorism.csv",function(error,data){
     tabulate(keys,data);
 })
 
+// $(document).ready(function() {
 //     $('#scrollableTable').DataTable( {
 //         "scrollY":        "200px",
 //         "scrollCollapse": true,
 //         "paging":         false
 //     } );
+// } );
