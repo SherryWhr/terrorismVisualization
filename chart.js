@@ -1,7 +1,7 @@
 
 //var g=d3.select("#svgchart1").append("g");
 //var g2=d3.select("#svgchart2").append("g");
-
+var widthOfWin=$(window).width(); 
 function chart_func(ctry, terr) {
 	// console.log(ctry)
 	// console.log(terr)
@@ -10,12 +10,12 @@ function chart_func(ctry, terr) {
     
 // Initial drawable area values
 	 var margin = {top: 20, right: 40, bottom: 20, left: 10},
-		 width = 600 - margin.left - margin.right,
+		 width = widthOfWin*0.3233 - margin.left - margin.right,
 		 height = 325 - margin.top - margin.bottom;
 
 		 // Specify range of x axis, match state to width
 	var xScale = d3.scaleBand()
-		 .rangeRound([0, width-30])
+		 .rangeRound([0, width])
 		 .paddingInner(0.5)
 		 .paddingOuter(0.5);
 
@@ -132,7 +132,7 @@ function chart_func(ctry, terr) {
 	        .call(xAxis)
 	        .append("text")
 	        .attr("class", "label")
-		                  .attr("x", width-20) // x-offset from the xAxis, move label all the way to the right
+		                  .attr("x", width) // x-offset from the xAxis, move label all the way to the right
 		                  .attr("y", -6)    // y-offset from the xAxis, moves text UPWARD!
 		                  .style("text-anchor", "end") // right-justify text
 		                  .attr("dy", "0.32em")
@@ -299,7 +299,7 @@ d3.csv("terrorism.csv",function(data){
 			.call(xAxis)
 			.append("text")
 			.attr("class", "label")
-		                  .attr("x", width-20) // x-offset from the xAxis, move label all the way to the right
+		                  .attr("x", width) // x-offset from the xAxis, move label all the way to the right
 		                  .attr("y", -6)    // y-offset from the xAxis, moves text UPWARD!
 		                  .style("text-anchor", "end") // right-justify text
 		                  .attr("dy", "0.32em")
