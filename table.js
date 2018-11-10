@@ -68,3 +68,9 @@ d3.csv("terrorism.csv",function(error,data){
     // console.log(keys);
     tabulate(keys,data);
 })
+
+//     $('#scrollableTable').DataTable( {
+//         "scrollY":        "200px",
+//         "scrollCollapse": true,
+//         "paging":         false
+//     } );
