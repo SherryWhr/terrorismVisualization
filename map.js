@@ -1,12 +1,11 @@
 function map_func(ctry, terr, yr) {
 	console.log("map_func"+ctry+terr+yr)
-	// console.log(ctry)
-	// console.log(terr)
 
 	if(ctry == "Country/Region") {ctry = "All";}
 
 	d3.selectAll("svg > *").remove();
-	// d3.selectAll("#yearSlider").remove();
+	d3.selectAll("g > *").remove();
+	d3.selectAll("text > *").remove();
 
 	var min = Number.POSITIVE_INFINITY;
 	var max = Number.NEGATIVE_INFINITY;
@@ -16,10 +15,6 @@ function map_func(ctry, terr, yr) {
 // read data
 d3.csv(yr+".csv", 
 	function(d, i, columns) {
-	// d.total = t;
-	// console.log(d.total)
-	// if(d.total < min) { min = d.total;};
-	// if(d.total > max) { max = d.total;};
 	return d;
 },
 function(error, data) {
@@ -28,8 +23,6 @@ function(error, data) {
 	var byState = {}; 
 	data.forEach(function(d) {
 		byState[d.country] = d[terr]; 
-		// if(byState[d.country] < min) { min = byState[d.country];};
-		// if(byState[d.country] > max) { max = byState[d.country];};
 	});
 
 // Draw the USA map with channel
@@ -74,58 +67,6 @@ function drawMap(error, country) {
 		.text(" ");
 	});
 
-
-	// d3.select("#"+ctry)
-	// .style("stroke-width", "3px")
-	// .style("fill","blue")
-
-
-	// // radius of circle
-	// var radius = d3.scaleSqrt()
-	// .domain([min, max])
-	// .range([0, 50]);
-	// // console.log(country.features);
-	// console.log(byState);
-
-	// d3.select("svg").append("g")
-	// .attr("class", "bubble")
-	// .selectAll("circle")
-	// .data(country.features.sort(function(a, b) { return byState[b] - byState[a]; }))
-	// .enter()
-	// .append("circle")
-	// .attr("transform", function(d) { 
-	// 	return "translate(" + geoGenerator.centroid(d) + ")"; })
-	// .attr("r", function(d) { 
-	// 	if (byState[d.properties.name]){
-	// 	console.log(byState[d.properties.name]);
-	// 	return radius(byState[d.properties.name]); 
-	// 	}else{
-	// 		return 0;
-	// 	}
-	// });
-
-	// // Add legend
-	// var legend = d3.select("svg").append("g")
-	// .attr("class", "legend")
-	// .attr("transform", "translate(" + (width - 900) + "," + (height - 250) + ")")
-	// .selectAll("g")
-	// .data([max/6, max/2, max])
-	// .enter()
-	// .append("g");
-
-	// legend.append("circle")
-	// .attr("cy", function(d) { return -radius(d); })
-	// .attr("r", radius)
-	// .attr("fill", "red")
-	// .attr("stroke", "black")
-	// .attr("fill-opacity", ".5");
-
-	// legend.append("text")
-	// .attr("y", function(d) { return -2 * radius(d); })
-	// .attr("dy", "1.3em")
-	// .attr("font-size", "12spx")
-	// .text(d3.format(".1s"));
-
 	var x = d3.scaleLinear()
 	.domain([0, 1620])
 	.rangeRound([600, 860]);
@@ -142,10 +83,6 @@ function drawMap(error, country) {
         return color(byState[d.properties.name]); // get rate value for specific object
         // pass rate to channelcolor function, return channelcolor based on scale
     });
-
-
-
- // console.log(color)
 
  var g = d3.select("#svgmap").append("g")
  .attr("class", "key")
@@ -185,7 +122,6 @@ function drawMap(error, country) {
  d3.select("#"+ctry)
  .style("stroke-width", "5px")
  .style("fill", "yellow")
-	// .style("fill","blue")
 }
 })
 
