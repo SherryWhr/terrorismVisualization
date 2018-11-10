@@ -239,8 +239,8 @@ d3.csv("terrorism.csv",function(data){
 			// console.log(filtered);
 			xScale.domain([2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017]);
 			yScale.domain([0, d3.max(filtered, function(d) { 
-				console.log("chart2 test y axis");
-				console.log(d.attack);
+				// console.log("chart2 test y axis");
+				// console.log(d.attack);
 				return +d.attack; })]).nice();
 			var xAxis = d3.axisBottom(xScale);
 			var yAxis = d3.axisLeft(yScale);

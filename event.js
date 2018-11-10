@@ -101,5 +101,6 @@ function drawMapTable(mod, buttonSelect){
 	var year = document.getElementById("year_selection")
 	console.log("year_selection")
 	console.log(year)
+	console.log(sect)
 	map_func(mod, buttonSelect, year);
 }
