@@ -1,25 +1,24 @@
 
-//var g=d3.select("#svgchart1").append("g");
-//var g2=d3.select("#svgchart2").append("g");
 var widthOfWin=$(window).width(); 
 function chart_func(ctry, terr) {
-	// console.log(ctry)
-	// console.log(terr)
 	var g=d3.select("#svgchart1").append("g");
 	var g2=d3.select("#svgchart2").append("g");
     
 // Initial drawable area values
+
 	 var margin = {top: 20, right: 40, bottom: 20, left: 10},
 		 width = widthOfWin*0.3233 - margin.left - margin.right,
 		 height = 325 - margin.top - margin.bottom;
 
 		 // Specify range of x axis, match state to width
+
 	var xScale = d3.scaleBand()
 		 .rangeRound([0, width])
 		 .paddingInner(0.5)
 		 .paddingOuter(0.5);
 
 		 	// Specify range of y axis, match population to height
+
 	var yScale = d3.scaleLinear()
 		 .rangeRound([height, 20]);
 
@@ -149,14 +148,6 @@ function chart_func(ctry, terr) {
 		                  .attr("height", 20)
 		                  .attr("fill", "red")
 		                  .style("opacity", 1);
-
-		                tooltip.append("text")
-		                  .attr("x", 30)
-		                  .attr("dy", "1.2em")
-		                  .style("text-anchor", "middle")
-		                  .attr("fill","darkOrange")
-		                  .style("font-size", "16px")
-		                  .style("font-weight", "bold");
 			
 			g.append("text")
         		.attr("x", (width / 2))             
@@ -171,7 +162,7 @@ function chart_func(ctry, terr) {
         		.attr("y", margin.top-5)
         		.attr("text-anchor", "middle")  
 				.style("font-size", "16px") 
-				.style("fill","darkOrange");
+				.style("fill","#895454");
         		//.style("text-decoration", "underline")  
         		//.text("World");
 
@@ -305,14 +296,6 @@ d3.csv("terrorism.csv",function(data){
 		                  .attr("fill", "red")
 		                  .style("opacity", 1);
 
-		                  tooltip.append("text")
-		                  .attr("x", 30)
-		                  .attr("dy", "1.2em")
-		                  .style("text-anchor", "middle")
-		                  .attr("fill","darkOrange")
-		                  .attr("font-size", "12px")
-		                  .attr("font-weight", "bold");
-
 					g2.append("text")
 						  .attr("x", (width / 2))             
 						  .attr("y", margin.top-5)
@@ -333,7 +316,7 @@ d3.csv("terrorism.csv",function(data){
 						  .attr("y", margin.top-5)
 						  .attr("text-anchor", "middle")  
 						  .style("font-size", "16px") 
-						  .style("fill","darkOrange");
+						  .style("fill","#895454");
 
 		              })
 	

@@ -73,7 +73,7 @@ function drawMap(error, country) {
 
 	var x = d3.scaleLinear()
 	.domain([0, 1620])
-	.rangeRound([width*0.66, width*0.9]);
+	.rangeRound([width*0.66, width*0.98]);
 
 	var color = d3.scaleThreshold()
 	.domain([0, 45, 135, 270, 450, 675, 945, 1260, 1620])
