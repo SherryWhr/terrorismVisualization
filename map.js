@@ -38,7 +38,8 @@ d3.select("#svgmap")
 .text("-");
 
 function drawMap(error, country) {
-	var width = 1060.42;
+	var widthOfWin=$(window).width(); 
+	var width = widthOfWin*0.65;
 	var height = 660;
 
 	var projection = d3.geoEquirectangular()
@@ -46,6 +47,9 @@ function drawMap(error, country) {
 
 	geoGenerator = d3.geoPath()
 	.projection(projection);
+
+	d3.select("#svgmap")
+	.attr("width", width-20)
 
 	var paths = d3.select("#svgmap")
 	.append("g")
@@ -69,7 +73,7 @@ function drawMap(error, country) {
 
 	var x = d3.scaleLinear()
 	.domain([0, 1620])
-	.rangeRound([600, 860]);
+	.rangeRound([width*0.66, width*0.9]);
 
 	var color = d3.scaleThreshold()
 	.domain([0, 45, 135, 270, 450, 675, 945, 1260, 1620])
@@ -86,7 +90,7 @@ function drawMap(error, country) {
 
  var g = d3.select("#svgmap").append("g")
  .attr("class", "key")
- .attr("transform", "translate(0,40)");
+ .attr("transform", "translate(-50,40)");
 
  g.selectAll("rect")
  .data(color.range().map(function(d) {
