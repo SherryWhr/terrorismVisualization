@@ -97,8 +97,6 @@ function drawMap(error, country) {
  	d = color.invertExtent(d);
  	if (d[0] == null) d[0] = x.domain()[0];
  	if (d[1] == null) d[1] = x.domain()[1];
- 	// console.log(min)
- 	// console.log(max)
  	return d;
  }))
  .enter().append("rect")

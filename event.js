@@ -3,7 +3,6 @@ var max = Number.NEGATIVE_INFINITY;
 var down = false;
 
 map_func("All", "total", "2007");
-//drawMapTable();
 chart_func("All", "total");
 
 	var slider = new Slider("#year_selection", {
@@ -21,7 +20,6 @@ function openCity(evt, cityName) {
 				tablinks[i].className = tablinks[i].className.replace(" active", "");
 			}
 			document.getElementById(cityName).style.display = "block";
-			//evt.currentTarget.className += " active";
 		}
 
 d3.csv("country_whole.csv", 
