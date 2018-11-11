@@ -193,7 +193,9 @@ function chart_func(ctry, terr) {
 		//   chart.dispatch.on('hideTooltip', function(e) {
 		//     nvtooltip.cleanup();
 		//   });
-
+		
+		
+		})
 /*---------------plot country chart---------------*/
 
 d3.csv("terrorism.csv",function(data){
