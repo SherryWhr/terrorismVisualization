@@ -48,20 +48,6 @@ function chart_func(ctry, terr) {
 		        return +d.attack; })]).nice();
 			var xAxis = d3.axisBottom(xScale);
 			var yAxis = d3.axisLeft(yScale);
-			//var g=d3.select("#svgchart1").append("g");
-		    // var chart = d3LineWithLegend()
-		    //  .xAxis.label('year')
-		    //  .width(width(margin))
-		    //  .height(height(margin))
-		    //  .yAxis.label('frequency of attacks');
-
-		    // var g = d3.select("body")
-		    //     .append("svg")
-		    //     .attr("width", 1000)
-		    //     .attr("height", 600);
-		        //.append("path")
-		        //.attr("class","line");
-			//.attr("d", valueline(data));
 
 			// var tipMouseover = function(d) {
 			// 		// var color = colorScale(d.manufacturer);
@@ -207,21 +193,7 @@ function chart_func(ctry, terr) {
 		//   chart.dispatch.on('hideTooltip', function(e) {
 		//     nvtooltip.cleanup();
 		//   });
-		// add the y Axis
-			// d3.select("#svgchart1").append("g")
-			// .attr("class", "axisNormal")
-			// .call(yAxis)
-			// .append("text")
-			// .attr("x", -45)
-			// .attr("y", y(y.ticks().pop()) + 8)
-			// .attr("fill", "#000")
-			// .attr("text-anchor", "start")
-			// .attr("font-size", 8)
-			// .attr("transform", "rotate(-90)")
-			// .text("Area (sq mi)");
-		
-		
-		})
+
 /*---------------plot country chart---------------*/
 
 d3.csv("terrorism.csv",function(data){
