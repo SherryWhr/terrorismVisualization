@@ -169,8 +169,8 @@ function chart_func(ctry, terr) {
 		                  .attr("dy", "1.2em")
 		                  .style("text-anchor", "middle")
 		                  .attr("fill","darkOrange")
-		                  .attr("font-size", "16px")
-		                  .attr("font-weight", "bold");
+		                  .style("font-size", "16px")
+		                  .style("font-weight", "bold");
 			
 			g.append("text")
         		.attr("x", (width / 2))             
