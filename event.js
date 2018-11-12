@@ -35,6 +35,11 @@ d3.csv("country_whole.csv",
 		});
 		
 		d3.select("#iMode")
+		.append("option")
+		.attr("value", "Afghanistan")
+		.text("Afghanistan")
+
+		d3.select("#iMode")
 		.selectAll("option")
 		.data(data)
 		.enter()
