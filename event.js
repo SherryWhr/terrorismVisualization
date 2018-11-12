@@ -40,6 +40,11 @@ d3.csv("country_whole.csv",
 		.text("Afghanistan")
 
 		d3.select("#iMode")
+		.append("option")
+		.attr("value", "Albania")
+		.text("Albania")
+
+		d3.select("#iMode")
 		.selectAll("option")
 		.data(data)
 		.enter()
