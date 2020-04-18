@@ -1,4 +1,4 @@
-# terrorismVisualization
+# Terrorism Visualization
 
 This project is a visualization of global terrorism situations from year 2007 to year 2017. 
 
